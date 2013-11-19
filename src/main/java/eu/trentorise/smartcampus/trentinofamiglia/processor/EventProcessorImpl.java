@@ -294,6 +294,9 @@ public class EventProcessorImpl implements ServiceBusListener {
 			dtobj.setType(STRUTTURA_RICETTIVA);
 			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
+			double loc[] = new double[] { sr.getLat(), sr.getLon() };
+			dtobj.setLocation(loc);					
+			
 			dtobj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
@@ -332,7 +335,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 			InfoObject dtobj = new InfoObject();
 			dtobj.setDescription("");
-			dtobj.setTitle(pa.getName() + " " + pa.getSurname());
+			dtobj.setTitle(pa.getName());
 			dtobj.setType(PERSONA_AUDIT);
 			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
@@ -340,7 +343,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
 			cd.put("name", pa.getName());
-			cd.put("surname", pa.getSurname());
+			cd.put("email", pa.getEmail());
 			cd.put("date", pa.getDate());
 			cd.put("type", pa.getType());
 			dtobj.setCustomData(cd);
@@ -355,8 +358,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 	public void updateNewMedia(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
-			DatiNewMedia dcd = DatiNewMedia.parseFrom(bs);
-			String id = encode(Subscriber.GET_NEW_MEDIA + "_" + dcd.getName());
+			DatiNewMedia dnm = DatiNewMedia.parseFrom(bs);
+			String id = encode(Subscriber.GET_NEW_MEDIA + "_" + dnm.getName());
 
 			InfoObject oldDtobj = null;
 			try {
@@ -365,19 +368,22 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 			InfoObject dtobj = new InfoObject();
 			dtobj.setDescription("");
-			dtobj.setTitle(dcd.getName());
+			dtobj.setTitle(dnm.getName());
 			dtobj.setType(NEW_MEDIA);
 			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
+			double loc[] = new double[] { dnm.getLat(), dnm.getLon() };
+			dtobj.setLocation(loc);								
+			
 			dtobj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
-			cd.put("contact", dcd.getContact());
-			cd.put("role", dcd.getRole());
-			cd.put("link", dcd.getLink());
-			cd.put("address", dcd.getAddress());
-			cd.put("phone", dcd.getPhone());
-			cd.put("email", dcd.getEmail());
+			cd.put("contact", dnm.getContact());
+			cd.put("role", dnm.getRole());
+			cd.put("link", dnm.getLink());
+			cd.put("address", dnm.getAddress());
+			cd.put("phone", dnm.getPhone());
+			cd.put("email", dnm.getEmail());
 			dtobj.setCustomData(cd);
 
 			if (!dtobj.equals(oldDtobj)) {
@@ -426,8 +432,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 	public void updateAllattamento(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
-			DatiAllattamento bt = DatiAllattamento.parseFrom(bs);
-			String id = encode(Subscriber.GET_ALLATTAMENTO + "_" + bt.getId());
+			DatiAllattamento da = DatiAllattamento.parseFrom(bs);
+			String id = encode(Subscriber.GET_ALLATTAMENTO + "_" + da.getId());
 
 			// TODO poi
 			InfoObject oldDtobj = null;
@@ -440,15 +446,19 @@ public class EventProcessorImpl implements ServiceBusListener {
 			tObj.setType(ALLATTAMENTO);
 			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-			tObj.setTitle(bt.getName());
+			tObj.setTitle(da.getName());
 			tObj.setDescription("");
+			
+			double loc[] = new double[] { da.getLat(), da.getLon() };
+			tObj.setLocation(loc);		
+			
 
 			tObj.setId(id);
 			//
 			Map<String, Object> cd = new TreeMap<String, Object>();
-			cd.put("address", bt.getAddress());
-			cd.put("town", bt.getTown());
-			cd.put("area", bt.getArea());
+			cd.put("address", da.getAddress());
+			cd.put("town", da.getTown());
+			cd.put("area", da.getArea());
 
 			tObj.setCustomData(cd);
 

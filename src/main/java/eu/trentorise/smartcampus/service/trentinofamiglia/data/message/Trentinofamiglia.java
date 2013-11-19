@@ -3929,6 +3929,14 @@ public final class Trentinofamiglia {
     // required string guide = 15;
     boolean hasGuide();
     String getGuide();
+    
+    // required double lat = 16;
+    boolean hasLat();
+    double getLat();
+    
+    // required double lon = 17;
+    boolean hasLon();
+    double getLon();
   }
   public static final class StrutturaRicettiva extends
       com.google.protobuf.GeneratedMessage
@@ -4439,6 +4447,26 @@ public final class Trentinofamiglia {
       }
     }
     
+    // required double lat = 16;
+    public static final int LAT_FIELD_NUMBER = 16;
+    private double lat_;
+    public boolean hasLat() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    public double getLat() {
+      return lat_;
+    }
+    
+    // required double lon = 17;
+    public static final int LON_FIELD_NUMBER = 17;
+    private double lon_;
+    public boolean hasLon() {
+      return ((bitField0_ & 0x00010000) == 0x00010000);
+    }
+    public double getLon() {
+      return lon_;
+    }
+    
     private void initFields() {
       id_ = "";
       name_ = "";
@@ -4455,6 +4483,8 @@ public final class Trentinofamiglia {
       bookingEmail_ = "";
       bookingLink_ = "";
       guide_ = "";
+      lat_ = 0D;
+      lon_ = 0D;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4521,6 +4551,14 @@ public final class Trentinofamiglia {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasLat()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLon()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -4572,6 +4610,12 @@ public final class Trentinofamiglia {
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         output.writeBytes(15, getGuideBytes());
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeDouble(16, lat_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        output.writeDouble(17, lon_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4641,6 +4685,14 @@ public final class Trentinofamiglia {
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(15, getGuideBytes());
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(16, lat_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(17, lon_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4796,6 +4848,10 @@ public final class Trentinofamiglia {
         bitField0_ = (bitField0_ & ~0x00002000);
         guide_ = "";
         bitField0_ = (bitField0_ & ~0x00004000);
+        lat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        lon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00010000);
         return this;
       }
       
@@ -4894,6 +4950,14 @@ public final class Trentinofamiglia {
           to_bitField0_ |= 0x00004000;
         }
         result.guide_ = guide_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.lat_ = lat_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00010000;
+        }
+        result.lon_ = lon_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4954,6 +5018,12 @@ public final class Trentinofamiglia {
         }
         if (other.hasGuide()) {
           setGuide(other.getGuide());
+        }
+        if (other.hasLat()) {
+          setLat(other.getLat());
+        }
+        if (other.hasLon()) {
+          setLon(other.getLon());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5017,6 +5087,14 @@ public final class Trentinofamiglia {
           return false;
         }
         if (!hasGuide()) {
+          
+          return false;
+        }
+        if (!hasLat()) {
+          
+          return false;
+        }
+        if (!hasLon()) {
           
           return false;
         }
@@ -5119,6 +5197,16 @@ public final class Trentinofamiglia {
             case 122: {
               bitField0_ |= 0x00004000;
               guide_ = input.readBytes();
+              break;
+            }
+            case 129: {
+              bitField0_ |= 0x00008000;
+              lat_ = input.readDouble();
+              break;
+            }
+            case 137: {
+              bitField0_ |= 0x00010000;
+              lon_ = input.readDouble();
               break;
             }
           }
@@ -5667,6 +5755,48 @@ public final class Trentinofamiglia {
         onChanged();
       }
       
+      // required double lat = 16;
+      private double lat_ ;
+      public boolean hasLat() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      public double getLat() {
+        return lat_;
+      }
+      public Builder setLat(double value) {
+        bitField0_ |= 0x00008000;
+        lat_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLat() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        lat_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // required double lon = 17;
+      private double lon_ ;
+      public boolean hasLon() {
+        return ((bitField0_ & 0x00010000) == 0x00010000);
+      }
+      public double getLon() {
+        return lon_;
+      }
+      public Builder setLon(double value) {
+        bitField0_ |= 0x00010000;
+        lon_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLon() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        lon_ = 0D;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.StrutturaRicettiva)
     }
     
@@ -5689,13 +5819,13 @@ public final class Trentinofamiglia {
     boolean hasName();
     String getName();
     
-    // required string surname = 3;
-    boolean hasSurname();
-    String getSurname();
-    
-    // required string date = 4;
+    // required string date = 3;
     boolean hasDate();
     String getDate();
+    
+    // required string email = 4;
+    boolean hasEmail();
+    String getEmail();
     
     // required string type = 5;
     boolean hasType();
@@ -5794,43 +5924,11 @@ public final class Trentinofamiglia {
       }
     }
     
-    // required string surname = 3;
-    public static final int SURNAME_FIELD_NUMBER = 3;
-    private java.lang.Object surname_;
-    public boolean hasSurname() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public String getSurname() {
-      java.lang.Object ref = surname_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          surname_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getSurnameBytes() {
-      java.lang.Object ref = surname_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        surname_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // required string date = 4;
-    public static final int DATE_FIELD_NUMBER = 4;
+    // required string date = 3;
+    public static final int DATE_FIELD_NUMBER = 3;
     private java.lang.Object date_;
     public boolean hasDate() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getDate() {
       java.lang.Object ref = date_;
@@ -5852,6 +5950,38 @@ public final class Trentinofamiglia {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         date_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string email = 4;
+    public static final int EMAIL_FIELD_NUMBER = 4;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          email_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        email_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -5893,8 +6023,8 @@ public final class Trentinofamiglia {
     private void initFields() {
       id_ = "";
       name_ = "";
-      surname_ = "";
       date_ = "";
+      email_ = "";
       type_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -5910,11 +6040,11 @@ public final class Trentinofamiglia {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasSurname()) {
+      if (!hasDate()) {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasDate()) {
+      if (!hasEmail()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -5936,10 +6066,10 @@ public final class Trentinofamiglia {
         output.writeBytes(2, getNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getSurnameBytes());
+        output.writeBytes(3, getDateBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getDateBytes());
+        output.writeBytes(4, getEmailBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getTypeBytes());
@@ -5963,11 +6093,11 @@ public final class Trentinofamiglia {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getSurnameBytes());
+          .computeBytesSize(3, getDateBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDateBytes());
+          .computeBytesSize(4, getEmailBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -6101,9 +6231,9 @@ public final class Trentinofamiglia {
         bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        surname_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         date_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        email_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
         type_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -6156,11 +6286,11 @@ public final class Trentinofamiglia {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.surname_ = surname_;
+        result.date_ = date_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.date_ = date_;
+        result.email_ = email_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
@@ -6187,11 +6317,11 @@ public final class Trentinofamiglia {
         if (other.hasName()) {
           setName(other.getName());
         }
-        if (other.hasSurname()) {
-          setSurname(other.getSurname());
-        }
         if (other.hasDate()) {
           setDate(other.getDate());
+        }
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
         }
         if (other.hasType()) {
           setType(other.getType());
@@ -6209,11 +6339,11 @@ public final class Trentinofamiglia {
           
           return false;
         }
-        if (!hasSurname()) {
+        if (!hasDate()) {
           
           return false;
         }
-        if (!hasDate()) {
+        if (!hasEmail()) {
           
           return false;
         }
@@ -6259,12 +6389,12 @@ public final class Trentinofamiglia {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              surname_ = input.readBytes();
+              date_ = input.readBytes();
               break;
             }
             case 34: {
               bitField0_ |= 0x00000008;
-              date_ = input.readBytes();
+              email_ = input.readBytes();
               break;
             }
             case 42: {
@@ -6350,46 +6480,10 @@ public final class Trentinofamiglia {
         onChanged();
       }
       
-      // required string surname = 3;
-      private java.lang.Object surname_ = "";
-      public boolean hasSurname() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public String getSurname() {
-        java.lang.Object ref = surname_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          surname_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setSurname(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        surname_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearSurname() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        surname_ = getDefaultInstance().getSurname();
-        onChanged();
-        return this;
-      }
-      void setSurname(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
-        surname_ = value;
-        onChanged();
-      }
-      
-      // required string date = 4;
+      // required string date = 3;
       private java.lang.Object date_ = "";
       public boolean hasDate() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public String getDate() {
         java.lang.Object ref = date_;
@@ -6405,20 +6499,56 @@ public final class Trentinofamiglia {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         date_ = value;
         onChanged();
         return this;
       }
       public Builder clearDate() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         date_ = getDefaultInstance().getDate();
         onChanged();
         return this;
       }
       void setDate(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         date_ = value;
+        onChanged();
+      }
+      
+      // required string email = 4;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmail(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      void setEmail(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        email_ = value;
         onChanged();
       }
       
@@ -6499,6 +6629,14 @@ public final class Trentinofamiglia {
     // required string email = 7;
     boolean hasEmail();
     String getEmail();
+    
+    // required double lat = 8;
+    boolean hasLat();
+    double getLat();
+    
+    // required double lon = 9;
+    boolean hasLon();
+    double getLon();
   }
   public static final class DatiNewMedia extends
       com.google.protobuf.GeneratedMessage
@@ -6753,6 +6891,26 @@ public final class Trentinofamiglia {
       }
     }
     
+    // required double lat = 8;
+    public static final int LAT_FIELD_NUMBER = 8;
+    private double lat_;
+    public boolean hasLat() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public double getLat() {
+      return lat_;
+    }
+    
+    // required double lon = 9;
+    public static final int LON_FIELD_NUMBER = 9;
+    private double lon_;
+    public boolean hasLon() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public double getLon() {
+      return lon_;
+    }
+    
     private void initFields() {
       name_ = "";
       contact_ = "";
@@ -6761,6 +6919,8 @@ public final class Trentinofamiglia {
       phone_ = "";
       link_ = "";
       email_ = "";
+      lat_ = 0D;
+      lon_ = 0D;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6795,6 +6955,14 @@ public final class Trentinofamiglia {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasLat()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLon()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -6822,6 +6990,12 @@ public final class Trentinofamiglia {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeBytes(7, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeDouble(8, lat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeDouble(9, lon_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6859,6 +7033,14 @@ public final class Trentinofamiglia {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(7, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, lat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, lon_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6998,6 +7180,10 @@ public final class Trentinofamiglia {
         bitField0_ = (bitField0_ & ~0x00000020);
         email_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
+        lat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        lon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -7064,6 +7250,14 @@ public final class Trentinofamiglia {
           to_bitField0_ |= 0x00000040;
         }
         result.email_ = email_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.lat_ = lat_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.lon_ = lon_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -7101,6 +7295,12 @@ public final class Trentinofamiglia {
         if (other.hasEmail()) {
           setEmail(other.getEmail());
         }
+        if (other.hasLat()) {
+          setLat(other.getLat());
+        }
+        if (other.hasLon()) {
+          setLon(other.getLon());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -7131,6 +7331,14 @@ public final class Trentinofamiglia {
           return false;
         }
         if (!hasEmail()) {
+          
+          return false;
+        }
+        if (!hasLat()) {
+          
+          return false;
+        }
+        if (!hasLon()) {
           
           return false;
         }
@@ -7193,6 +7401,16 @@ public final class Trentinofamiglia {
             case 58: {
               bitField0_ |= 0x00000040;
               email_ = input.readBytes();
+              break;
+            }
+            case 65: {
+              bitField0_ |= 0x00000080;
+              lat_ = input.readDouble();
+              break;
+            }
+            case 73: {
+              bitField0_ |= 0x00000100;
+              lon_ = input.readDouble();
               break;
             }
           }
@@ -7453,6 +7671,48 @@ public final class Trentinofamiglia {
         onChanged();
       }
       
+      // required double lat = 8;
+      private double lat_ ;
+      public boolean hasLat() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public double getLat() {
+        return lat_;
+      }
+      public Builder setLat(double value) {
+        bitField0_ |= 0x00000080;
+        lat_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLat() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        lat_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // required double lon = 9;
+      private double lon_ ;
+      public boolean hasLon() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public double getLon() {
+        return lon_;
+      }
+      public Builder setLon(double value) {
+        bitField0_ |= 0x00000100;
+        lon_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLon() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        lon_ = 0D;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.DatiNewMedia)
     }
     
@@ -7486,6 +7746,14 @@ public final class Trentinofamiglia {
     // optional string area = 5;
     boolean hasArea();
     String getArea();
+    
+    // required double lat = 6;
+    boolean hasLat();
+    double getLat();
+    
+    // required double lon = 7;
+    boolean hasLon();
+    double getLon();
   }
   public static final class DatiAllattamento extends
       com.google.protobuf.GeneratedMessage
@@ -7676,12 +7944,34 @@ public final class Trentinofamiglia {
       }
     }
     
+    // required double lat = 6;
+    public static final int LAT_FIELD_NUMBER = 6;
+    private double lat_;
+    public boolean hasLat() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public double getLat() {
+      return lat_;
+    }
+    
+    // required double lon = 7;
+    public static final int LON_FIELD_NUMBER = 7;
+    private double lon_;
+    public boolean hasLon() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public double getLon() {
+      return lon_;
+    }
+    
     private void initFields() {
       id_ = "";
       name_ = "";
       address_ = "";
       town_ = "";
       area_ = "";
+      lat_ = 0D;
+      lon_ = 0D;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -7701,6 +7991,14 @@ public final class Trentinofamiglia {
         return false;
       }
       if (!hasTown()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLat()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLon()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -7725,6 +8023,12 @@ public final class Trentinofamiglia {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getAreaBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeDouble(6, lat_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeDouble(7, lon_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7754,6 +8058,14 @@ public final class Trentinofamiglia {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, getAreaBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(6, lat_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(7, lon_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7889,6 +8201,10 @@ public final class Trentinofamiglia {
         bitField0_ = (bitField0_ & ~0x00000008);
         area_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        lat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        lon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -7947,6 +8263,14 @@ public final class Trentinofamiglia {
           to_bitField0_ |= 0x00000010;
         }
         result.area_ = area_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.lat_ = lat_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.lon_ = lon_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -7978,6 +8302,12 @@ public final class Trentinofamiglia {
         if (other.hasArea()) {
           setArea(other.getArea());
         }
+        if (other.hasLat()) {
+          setLat(other.getLat());
+        }
+        if (other.hasLon()) {
+          setLon(other.getLon());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -7996,6 +8326,14 @@ public final class Trentinofamiglia {
           return false;
         }
         if (!hasTown()) {
+          
+          return false;
+        }
+        if (!hasLat()) {
+          
+          return false;
+        }
+        if (!hasLon()) {
           
           return false;
         }
@@ -8048,6 +8386,16 @@ public final class Trentinofamiglia {
             case 42: {
               bitField0_ |= 0x00000010;
               area_ = input.readBytes();
+              break;
+            }
+            case 49: {
+              bitField0_ |= 0x00000020;
+              lat_ = input.readDouble();
+              break;
+            }
+            case 57: {
+              bitField0_ |= 0x00000040;
+              lon_ = input.readDouble();
               break;
             }
           }
@@ -8234,6 +8582,48 @@ public final class Trentinofamiglia {
         bitField0_ |= 0x00000010;
         area_ = value;
         onChanged();
+      }
+      
+      // required double lat = 6;
+      private double lat_ ;
+      public boolean hasLat() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public double getLat() {
+        return lat_;
+      }
+      public Builder setLat(double value) {
+        bitField0_ |= 0x00000020;
+        lat_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLat() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        lat_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // required double lon = 7;
+      private double lon_ ;
+      public boolean hasLon() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public double getLon() {
+        return lon_;
+      }
+      public Builder setLon(double value) {
+        bitField0_ |= 0x00000040;
+        lon_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLon() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        lon_ = 0D;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.DatiAllattamento)
@@ -14697,49 +15087,51 @@ public final class Trentinofamiglia {
       "at\030\006 \001(\t\022\014\n\004more\030\007 \001(\t\"c\n\022DatiManifestaz" +
       "ione\022\n\n\002id\030\001 \002(\t\022\r\n\005title\030\002 \001(\t\022\023\n\013descr" +
       "iption\030\003 \001(\t\022\014\n\004link\030\004 \001(\t\022\017\n\007pubDate\030\005 " +
-      "\001(\t\"\257\002\n\022StrutturaRicettiva\022\n\n\002id\030\001 \002(\t\022\014" +
+      "\001(\t\"\311\002\n\022StrutturaRicettiva\022\n\n\002id\030\001 \002(\t\022\014" +
       "\n\004name\030\002 \002(\t\022\r\n\005stars\030\003 \002(\t\022\023\n\013levelFami" +
       "ly\030\004 \002(\t\022\016\n\006region\030\005 \002(\t\022\014\n\004town\030\006 \002(\t\022\022",
       "\n\nbookingHow\030\007 \002(\t\022\024\n\014bookingWhere\030\010 \002(\t" +
       "\022\026\n\016bookingAddress\030\t \002(\t\022\026\n\016bookingZipCo" +
       "de\030\n \002(\t\022\023\n\013bookingTown\030\013 \002(\t\022\024\n\014booking" +
       "Phone\030\014 \002(\t\022\024\n\014bookingEmail\030\r \002(\t\022\023\n\013boo" +
-      "kingLink\030\016 \002(\t\022\r\n\005guide\030\017 \002(\t\"Y\n\020DatiPer" +
-      "sonaAudit\022\n\n\002id\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\017\n\007s" +
-      "urname\030\003 \002(\t\022\014\n\004date\030\004 \002(\t\022\014\n\004type\030\005 \002(\t" +
-      "\"x\n\014DatiNewMedia\022\014\n\004name\030\001 \002(\t\022\017\n\007contac" +
-      "t\030\002 \002(\t\022\014\n\004role\030\003 \002(\t\022\017\n\007address\030\004 \002(\t\022\r" +
-      "\n\005phone\030\005 \002(\t\022\014\n\004link\030\006 \002(\t\022\r\n\005email\030\007 \002",
-      "(\t\"Y\n\020DatiAllattamento\022\n\n\002id\030\001 \002(\t\022\014\n\004na" +
-      "me\030\002 \002(\t\022\017\n\007address\030\003 \002(\t\022\014\n\004town\030\004 \002(\t\022" +
-      "\014\n\004area\030\005 \001(\t\"\347\001\n\033DatiOrganizzazioniDist" +
-      "retto\022\n\n\002id\030\001 \002(\t\022\r\n\005title\030\002 \002(\t\022\023\n\013desc" +
-      "ription\030\003 \002(\t\022\r\n\005alias\030\004 \002(\t\022o\n\016organizz" +
-      "azioni\030\005 \003(\0132W.eu.trentorise.smartcampus" +
-      ".service.trentinofamiglia.data.message.O" +
-      "rganizzazioneAderente\022\013\n\003lat\030\006 \002(\001\022\013\n\003lo" +
-      "n\030\007 \002(\001\"\310\001\n\026OrganizzazioneAderente\022\n\n\002id" +
-      "\030\001 \002(\t\022\r\n\005alias\030\002 \002(\t\022\014\n\004name\030\003 \002(\t\022\023\n\013d",
-      "escription\030\004 \002(\t\022\017\n\007address\030\005 \002(\t\022\r\n\005pho" +
-      "ne\030\006 \002(\t\022\013\n\003fax\030\007 \002(\t\022\r\n\005email\030\010 \002(\t\022\014\n\004" +
-      "link\030\t \002(\t\022\014\n\004logo\030\n \001(\t\022\013\n\003lat\030\013 \002(\001\022\013\n" +
-      "\003lon\030\014 \002(\001\"\324\001\n\026DatiProgrammiDistretto\022\n\n" +
-      "\002id\030\001 \002(\t\022\r\n\005title\030\002 \002(\t\022\023\n\013description\030" +
-      "\003 \002(\t\022\r\n\005alias\030\004 \002(\t\022a\n\tprogrammi\030\005 \003(\0132" +
-      "N.eu.trentorise.smartcampus.service.tren" +
-      "tinofamiglia.data.message.DatiProgramma\022" +
-      "\013\n\003lat\030\006 \002(\001\022\013\n\003lon\030\007 \002(\001\"\214\001\n\rDatiProgra" +
-      "mma\022\014\n\004year\030\001 \002(\t\022\014\n\004link\030\002 \002(\t\022_\n\010attiv",
-      "ita\030\003 \003(\0132M.eu.trentorise.smartcampus.se" +
-      "rvice.trentinofamiglia.data.message.Dati" +
-      "Attivita\"\275\001\n\014DatiAttivita\022\r\n\005title\030\001 \002(\t" +
-      "\022\023\n\013description\030\002 \002(\t\022\017\n\007contact\030\003 \002(\t\022\r" +
-      "\n\005times\030\004 \002(\t\022\014\n\004tags\030\005 \001(\t\022[\n\006azioni\030\006 " +
-      "\003(\0132K.eu.trentorise.smartcampus.service." +
-      "trentinofamiglia.data.message.DatiAzione" +
-      "\"l\n\nDatiAzione\022\r\n\005title\030\001 \002(\t\022\023\n\013descrip" +
-      "tion\030\002 \002(\t\022\014\n\004goal\030\003 \002(\t\022\017\n\007contact\030\004 \002(" +
-      "\t\022\r\n\005times\030\005 \002(\t\022\014\n\004tags\030\006 \001(\t"
+      "kingLink\030\016 \002(\t\022\r\n\005guide\030\017 \002(\t\022\013\n\003lat\030\020 \002" +
+      "(\001\022\013\n\003lon\030\021 \002(\001\"W\n\020DatiPersonaAudit\022\n\n\002i" +
+      "d\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\014\n\004date\030\003 \002(\t\022\r\n\005e" +
+      "mail\030\004 \002(\t\022\014\n\004type\030\005 \002(\t\"\222\001\n\014DatiNewMedi" +
+      "a\022\014\n\004name\030\001 \002(\t\022\017\n\007contact\030\002 \002(\t\022\014\n\004role" +
+      "\030\003 \002(\t\022\017\n\007address\030\004 \002(\t\022\r\n\005phone\030\005 \002(\t\022\014",
+      "\n\004link\030\006 \002(\t\022\r\n\005email\030\007 \002(\t\022\013\n\003lat\030\010 \002(\001" +
+      "\022\013\n\003lon\030\t \002(\001\"s\n\020DatiAllattamento\022\n\n\002id\030" +
+      "\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\017\n\007address\030\003 \002(\t\022\014\n\004" +
+      "town\030\004 \002(\t\022\014\n\004area\030\005 \001(\t\022\013\n\003lat\030\006 \002(\001\022\013\n" +
+      "\003lon\030\007 \002(\001\"\347\001\n\033DatiOrganizzazioniDistret" +
+      "to\022\n\n\002id\030\001 \002(\t\022\r\n\005title\030\002 \002(\t\022\023\n\013descrip" +
+      "tion\030\003 \002(\t\022\r\n\005alias\030\004 \002(\t\022o\n\016organizzazi" +
+      "oni\030\005 \003(\0132W.eu.trentorise.smartcampus.se" +
+      "rvice.trentinofamiglia.data.message.Orga" +
+      "nizzazioneAderente\022\013\n\003lat\030\006 \002(\001\022\013\n\003lon\030\007",
+      " \002(\001\"\310\001\n\026OrganizzazioneAderente\022\n\n\002id\030\001 " +
+      "\002(\t\022\r\n\005alias\030\002 \002(\t\022\014\n\004name\030\003 \002(\t\022\023\n\013desc" +
+      "ription\030\004 \002(\t\022\017\n\007address\030\005 \002(\t\022\r\n\005phone\030" +
+      "\006 \002(\t\022\013\n\003fax\030\007 \002(\t\022\r\n\005email\030\010 \002(\t\022\014\n\004lin" +
+      "k\030\t \002(\t\022\014\n\004logo\030\n \001(\t\022\013\n\003lat\030\013 \002(\001\022\013\n\003lo" +
+      "n\030\014 \002(\001\"\324\001\n\026DatiProgrammiDistretto\022\n\n\002id" +
+      "\030\001 \002(\t\022\r\n\005title\030\002 \002(\t\022\023\n\013description\030\003 \002" +
+      "(\t\022\r\n\005alias\030\004 \002(\t\022a\n\tprogrammi\030\005 \003(\0132N.e" +
+      "u.trentorise.smartcampus.service.trentin" +
+      "ofamiglia.data.message.DatiProgramma\022\013\n\003",
+      "lat\030\006 \002(\001\022\013\n\003lon\030\007 \002(\001\"\214\001\n\rDatiProgramma" +
+      "\022\014\n\004year\030\001 \002(\t\022\014\n\004link\030\002 \002(\t\022_\n\010attivita" +
+      "\030\003 \003(\0132M.eu.trentorise.smartcampus.servi" +
+      "ce.trentinofamiglia.data.message.DatiAtt" +
+      "ivita\"\275\001\n\014DatiAttivita\022\r\n\005title\030\001 \002(\t\022\023\n" +
+      "\013description\030\002 \002(\t\022\017\n\007contact\030\003 \002(\t\022\r\n\005t" +
+      "imes\030\004 \002(\t\022\014\n\004tags\030\005 \001(\t\022[\n\006azioni\030\006 \003(\013" +
+      "2K.eu.trentorise.smartcampus.service.tre" +
+      "ntinofamiglia.data.message.DatiAzione\"l\n" +
+      "\nDatiAzione\022\r\n\005title\030\001 \002(\t\022\023\n\013descriptio",
+      "n\030\002 \002(\t\022\014\n\004goal\030\003 \002(\t\022\017\n\007contact\030\004 \002(\t\022\r" +
+      "\n\005times\030\005 \002(\t\022\014\n\004tags\030\006 \001(\t"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -14783,7 +15175,7 @@ public final class Trentinofamiglia {
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_StrutturaRicettiva_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_StrutturaRicettiva_descriptor,
-              new java.lang.String[] { "Id", "Name", "Stars", "LevelFamily", "Region", "Town", "BookingHow", "BookingWhere", "BookingAddress", "BookingZipCode", "BookingTown", "BookingPhone", "BookingEmail", "BookingLink", "Guide", },
+              new java.lang.String[] { "Id", "Name", "Stars", "LevelFamily", "Region", "Town", "BookingHow", "BookingWhere", "BookingAddress", "BookingZipCode", "BookingTown", "BookingPhone", "BookingEmail", "BookingLink", "Guide", "Lat", "Lon", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.StrutturaRicettiva.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.StrutturaRicettiva.Builder.class);
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiPersonaAudit_descriptor =
@@ -14791,7 +15183,7 @@ public final class Trentinofamiglia {
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiPersonaAudit_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiPersonaAudit_descriptor,
-              new java.lang.String[] { "Id", "Name", "Surname", "Date", "Type", },
+              new java.lang.String[] { "Id", "Name", "Date", "Email", "Type", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiPersonaAudit.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiPersonaAudit.Builder.class);
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiNewMedia_descriptor =
@@ -14799,7 +15191,7 @@ public final class Trentinofamiglia {
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiNewMedia_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiNewMedia_descriptor,
-              new java.lang.String[] { "Name", "Contact", "Role", "Address", "Phone", "Link", "Email", },
+              new java.lang.String[] { "Name", "Contact", "Role", "Address", "Phone", "Link", "Email", "Lat", "Lon", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiNewMedia.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiNewMedia.Builder.class);
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiAllattamento_descriptor =
@@ -14807,7 +15199,7 @@ public final class Trentinofamiglia {
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiAllattamento_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiAllattamento_descriptor,
-              new java.lang.String[] { "Id", "Name", "Address", "Town", "Area", },
+              new java.lang.String[] { "Id", "Name", "Address", "Town", "Area", "Lat", "Lon", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiAllattamento.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiAllattamento.Builder.class);
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_DatiOrganizzazioniDistretto_descriptor =
