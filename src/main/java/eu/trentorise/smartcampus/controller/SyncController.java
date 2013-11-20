@@ -84,7 +84,6 @@ public class SyncController extends AbstractObjectController {
 					POIObject obj = (POIObject) iterator.next();
 					if (!checkDate(obj)) {
 							iterator.remove();
-							System.out.println("REMOVED P!");
 							continue;
 						}
 					obj.filterUserData(userId);
@@ -96,7 +95,6 @@ public class SyncController extends AbstractObjectController {
 					EventObject obj = (EventObject) iterator.next();
 					if (!checkDate(obj)) {
 						iterator.remove();
-						System.out.println("REMOVED E!");
 						continue;
 					}					
 					obj.filterUserData(userId);
@@ -108,7 +106,6 @@ public class SyncController extends AbstractObjectController {
 					TrackObject obj = (TrackObject) iterator.next();
 					if (!checkDate(obj)) {
 						iterator.remove();
-						System.out.println("REMOVED T!");
 						continue;
 					}					
 					obj.filterUserData(userId);
@@ -120,7 +117,6 @@ public class SyncController extends AbstractObjectController {
 					InfoObject obj = (InfoObject) iterator.next();
 					if (!checkDate(obj)) {
 						iterator.remove();
-						System.out.println("REMOVED I!");
 						continue;
 					}					
 					obj.filterUserData(userId);

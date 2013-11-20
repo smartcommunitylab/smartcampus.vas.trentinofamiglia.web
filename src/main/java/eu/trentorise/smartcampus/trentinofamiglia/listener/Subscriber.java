@@ -35,10 +35,13 @@ public class Subscriber {
 	public static final String GET_NEW_MEDIA = "GetNewMedia";
 	public static final String GET_ALLATTAMENTO = "GetAllattamento";
 	public static final String GET_BIKE_TRACKS = "GetBikeTracks";
-	public static final String GET_WALK_TRACKS = "GetWalkBikeTracks";
+	public static final String GET_WALKBIKE_TRACKS = "GetWalkBikeTracks";
+	public static final String GET_WALK_TRACKS = "GetWalkTracks";
 	
 	public static final String GET_DISTRETTI = "GetDistretti";
 	public static final String GET_PROGRAMMI = "GetProgrammi";
+	
+	public static final String GET_EVENTI_GARDA = "GetEventiGarda";
 	
 	
 	public static final String TRENTINOFAMIGLIA = "smartcampus.service.trentinofamiglia";
@@ -59,11 +62,13 @@ public class Subscriber {
 			client.subscribeService(TRENTINOFAMIGLIA, GET_NEW_MEDIA, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_ALLATTAMENTO, params);
 			client.subscribeService(TRACKS, GET_BIKE_TRACKS, params);
-			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);
+			client.subscribeService(TRACKS, GET_WALKBIKE_TRACKS, params);
+			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);			
 			client.subscribeService(TRENTINOFAMIGLIA, GET_DISTRETTI, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_PROGRAMMI, params);
+			client.subscribeService(TRENTINOFAMIGLIA, GET_EVENTI_GARDA, params);
 		} catch (InvocationException e) {
-			logger.error("Failed to subscribe for domain events: "+e.getMessage());
+			logger.error("Failed to subscribe for service events: "+e.getMessage());
 		}
 	}
 }

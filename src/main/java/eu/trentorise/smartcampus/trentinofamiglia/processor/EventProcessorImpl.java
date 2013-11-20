@@ -42,6 +42,7 @@ import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinof
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiProgrammiDistretto;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DossierFamiglia;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoFamiglia;
+import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoGarda;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneAderente;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamiglia;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.StrutturaRicettiva;
@@ -62,11 +63,14 @@ public class EventProcessorImpl implements ServiceBusListener {
 	private static final String ALLATTAMENTO = "Zona allattamento";
 
 	private static final String BIKE_TRACK = "Pista ciclabile";
+	private static final String BIKEWALK_TRACK = "Pista ciclopedonale";
 	private static final String WALK_TRACK = "Trekking";
 
 	private static final String DISTRETTO = "Distretto";
 	private static final String ORGANIZZAZIONE_DISTRETTO = "Organizzazione distretto";
 	private static final String ATTIVITA_DISTRETTO = "Attivita distretto";
+	
+	private static final String EVENTO_GARDA = "Evento Garda";
 
 	@Autowired
 	private BasicObjectSyncStorage storage;
@@ -97,6 +101,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 					updateNewMedia(data);
 				} else if (Subscriber.GET_BIKE_TRACKS.equals(methodName)) {
 					updateTrack(data, methodName, BIKE_TRACK);
+				} else if (Subscriber.GET_WALKBIKE_TRACKS.equals(methodName)) {
+					updateTrack(data, methodName, BIKEWALK_TRACK);
 				} else if (Subscriber.GET_WALK_TRACKS.equals(methodName)) {
 					updateTrack(data, methodName, WALK_TRACK);
 				} else if (Subscriber.GET_ALLATTAMENTO.equals(methodName)) {
@@ -105,6 +111,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 					updateDistretti(data);
 				} else if (Subscriber.GET_PROGRAMMI.equals(methodName)) {
 					updateProgrammi(data);
+				} else if (Subscriber.GET_EVENTI_GARDA.equals(methodName)) {
+					updateEventiGarda(data);
 				}
 
 			}
@@ -612,7 +620,52 @@ public class EventProcessorImpl implements ServiceBusListener {
 				}
 			}
 	}
+	
+	public void updateEventiGarda(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
+		List<Map> fsl = new ArrayList<Map>();
+		for (ByteString bs : bsl) {
+			EventoGarda eg = EventoGarda.parseFrom(bs);
+			String id = encode(Subscriber.GET_EVENTI_GARDA + "_" + eg.getTitle());
 
+			EventObject oldDtobj = null;
+			try {
+				oldDtobj = (EventObject) storage.getObjectById(id);
+			} catch (NotFoundException e) {}
+
+			EventObject eventObject = new EventObject();
+
+			eventObject.setDescription(eg.getDescription());
+			eventObject.setTitle(eg.getTitle());
+			eventObject.setType(EVENTO_GARDA);
+			eventObject.setSource(Subscriber.TRENTINOFAMIGLIA);
+
+			eventObject.setId(id);
+
+			double loc[] = new double[] { eg.hasLat()?eg.getLat():0, eg.hasLon()?eg.getLon():0 };
+			eventObject.setLocation(loc);
+
+			eventObject.setFromTime(eg.getFrom());
+			eventObject.setToTime(eg.getTo());
+
+			Map<String, Object> cd = new TreeMap<String, Object>();
+			cd.put("link", eg.getLink());
+			cd.put("shortText", eg.getCategory());
+			cd.put("place", eg.getPlace());
+			cd.put("location", eg.getLocation());
+			cd.put("category", eg.getCategory());
+			cd.put("price", eg.getPrice());
+			cd.put("free", eg.getFree());
+
+			eventObject.setCustomData(cd);
+
+			if (!eventObject.equals(oldDtobj)) {
+				storage.storeObject(eventObject);
+				System.out.println("CHANGED " + id);
+			}
+		}
+
+	}	
+	
 	private Long parseDate(String date) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
