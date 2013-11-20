@@ -30,18 +30,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.geo.Circle;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import eu.trentorise.smartcampus.aac.AACService;
 import eu.trentorise.smartcampus.data.GeoTimeObjectSyncStorage;
 import eu.trentorise.smartcampus.dt.model.BaseDTObject;
 import eu.trentorise.smartcampus.dt.model.ObjectFilter;
 import eu.trentorise.smartcampus.profileservice.BasicProfileService;
 import eu.trentorise.smartcampus.profileservice.ProfileServiceException;
 import eu.trentorise.smartcampus.profileservice.model.BasicProfile;
-import eu.trentorise.smartcampus.resourceprovider.controller.SCController;
-import eu.trentorise.smartcampus.social.model.User;
-import eu.trentorise.smartcampus.resourceprovider.model.AuthServices;
 
 public class AbstractObjectController {
 
@@ -53,7 +48,7 @@ public class AbstractObjectController {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Autowired
-	@Value("${basic.profile.server.url}")
+	@Value("${aacURL}")
 	private String profileURL;
 	
 	protected BasicProfileService profileService;

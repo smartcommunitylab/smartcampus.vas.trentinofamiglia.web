@@ -49,9 +49,6 @@
         <sec:intercept-url pattern="/social/" access="isFullyAuthenticated()" />
     </sec:http>
      -->
-    
-
-    
 
     <bean id="forbEntryPoint"
         class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint">
@@ -65,14 +62,7 @@
         <sec:authentication-provider ref="preauthAuthProvider" />
     </sec:authentication-manager>
 
-    <bean id="preauthAuthProvider"
-        class="eu.trentorise.smartcampus.aac.conf.OAuthAuthenticationProvider">
+    <bean id="preauthAuthProvider" class="eu.trentorise.smartcampus.aac.conf.OAuthAuthenticationProvider">
     </bean>
-
-    <bean id="tokenStore"
-        class="eu.trentorise.smartcampus.aac.conf.impl.InMemoryTokenStore" />
-
-
-
 	
 </beans>

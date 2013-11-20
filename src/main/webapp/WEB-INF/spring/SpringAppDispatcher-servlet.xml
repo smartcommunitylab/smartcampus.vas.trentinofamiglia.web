@@ -84,21 +84,5 @@
 	<bean id="serviceUpdateSubscriber" class="eu.trentorise.smartcampus.trentinofamiglia.listener.Subscriber">
 		<constructor-arg ref="serviceBusClient" />
 	</bean>
-    
-     <bean id="socialService" class="eu.trentorise.smartcampus.socialservice.SocialService">
-        <constructor-arg value="${socialservice.url}" />
-    </bean>
-
-	<bean id="dataSource" destroy-method="close"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.user}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean>    
-    
-    <bean id="authServices" class="eu.trentorise.smartcampus.resourceprovider.jdbc.JdbcServices">
-        <constructor-arg ref="dataSource"/>
-    </bean>     
      
 </beans>
