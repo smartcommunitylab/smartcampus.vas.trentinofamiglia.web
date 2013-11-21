@@ -291,27 +291,32 @@ public class EventProcessorImpl implements ServiceBusListener {
 			StrutturaRicettiva sr = StrutturaRicettiva.parseFrom(bs);
 			String id = encode(Subscriber.GET_STRUTTURE_RICETTIVE + "_" + sr.getId());
 
-			InfoObject oldDtobj = null;
+			POIObject oldDtobj = null;
 			try {
-				oldDtobj = (InfoObject) storage.getObjectById(id);
+				oldDtobj = (POIObject) storage.getObjectById(id);
 			} catch (NotFoundException e) {}
 
-			InfoObject dtobj = new InfoObject();
-			dtobj.setDescription("");
-			dtobj.setTitle(sr.getName());
-			dtobj.setType(STRUTTURA_RICETTIVA);
-			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
+			POIObject poiObj = new POIObject();
+			poiObj.setDescription("");
+			poiObj.setTitle(sr.getName());
+			poiObj.setType(STRUTTURA_RICETTIVA);
+			poiObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
 			double loc[] = new double[] { sr.getLat(), sr.getLon() };
-			dtobj.setLocation(loc);					
+			poiObj.setLocation(loc);					
 			
-			dtobj.setId(id);
+			POIData poiData = new POIData();
+			poiData.setCity(sr.getTown());
+			poiData.setRegion(sr.getRegion());
+			poiData.setLatitude(sr.getLat());
+			poiData.setLongitude(sr.getLon());
+			poiObj.setPoi(poiData);
+			
+			poiObj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
 			cd.put("levelFamily", sr.getLevelFamily());
 			cd.put("stars", sr.getStars());
-			cd.put("region", sr.getRegion());
-			cd.put("town", sr.getTown());
 			cd.put("bookingHow", sr.getBookingHow());
 			cd.put("bookingWhere", sr.getBookingWhere());
 			cd.put("bookingAddress", sr.getBookingAddress());
@@ -321,10 +326,10 @@ public class EventProcessorImpl implements ServiceBusListener {
 			cd.put("bookingEmail", sr.getBookingEmail());
 			cd.put("bookingLink", sr.getBookingLink());
 			cd.put("guide", sr.getGuide());
-			dtobj.setCustomData(cd);
+			poiObj.setCustomData(cd);
 
-			if (!dtobj.equals(oldDtobj)) {
-				storage.storeObject(dtobj);
+			if (!poiObj.equals(oldDtobj)) {
+				storage.storeObject(poiObj);
 				System.out.println("CHANGED " + id);
 			}
 		}
@@ -369,21 +374,27 @@ public class EventProcessorImpl implements ServiceBusListener {
 			DatiNewMedia dnm = DatiNewMedia.parseFrom(bs);
 			String id = encode(Subscriber.GET_NEW_MEDIA + "_" + dnm.getName());
 
-			InfoObject oldDtobj = null;
+			POIObject oldDtobj = null;
 			try {
-				oldDtobj = (InfoObject) storage.getObjectById(id);
+				oldDtobj = (POIObject) storage.getObjectById(id);
 			} catch (NotFoundException e) {}
 
-			InfoObject dtobj = new InfoObject();
-			dtobj.setDescription("");
-			dtobj.setTitle(dnm.getName());
-			dtobj.setType(NEW_MEDIA);
-			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
+			POIObject poiObj = new POIObject();
+			poiObj.setDescription("");
+			poiObj.setTitle(dnm.getName());
+			poiObj.setType(NEW_MEDIA);
+			poiObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
 			double loc[] = new double[] { dnm.getLat(), dnm.getLon() };
-			dtobj.setLocation(loc);								
+			poiObj.setLocation(loc);								
 			
-			dtobj.setId(id);
+			POIData poiData = new POIData();
+			poiData.setStreet(dnm.getAddress());
+			poiData.setLatitude(dnm.getLat());
+			poiData.setLongitude(dnm.getLon());			
+			poiObj.setPoi(poiData);
+			
+			poiObj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
 			cd.put("contact", dnm.getContact());
@@ -392,10 +403,10 @@ public class EventProcessorImpl implements ServiceBusListener {
 			cd.put("address", dnm.getAddress());
 			cd.put("phone", dnm.getPhone());
 			cd.put("email", dnm.getEmail());
-			dtobj.setCustomData(cd);
+			poiObj.setCustomData(cd);
 
-			if (!dtobj.equals(oldDtobj)) {
-				storage.storeObject(dtobj);
+			if (!poiObj.equals(oldDtobj)) {
+				storage.storeObject(poiObj);
 				System.out.println("CHANGED " + id);
 			}
 		}
@@ -444,34 +455,39 @@ public class EventProcessorImpl implements ServiceBusListener {
 			String id = encode(Subscriber.GET_ALLATTAMENTO + "_" + da.getId());
 
 			// TODO poi
-			InfoObject oldDtobj = null;
+			POIObject oldDtobj = null;
 			try {
-				oldDtobj = (InfoObject) storage.getObjectById(id);
+				oldDtobj = (POIObject) storage.getObjectById(id);
 			} catch (NotFoundException e) {}
 
-			InfoObject tObj = new InfoObject();
+			POIObject poiObj = new POIObject();
 
-			tObj.setType(ALLATTAMENTO);
-			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+			poiObj.setType(ALLATTAMENTO);
+			poiObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-			tObj.setTitle(da.getName());
-			tObj.setDescription("");
+			poiObj.setTitle(da.getName());
+			poiObj.setDescription("");
 			
 			double loc[] = new double[] { da.getLat(), da.getLon() };
-			tObj.setLocation(loc);		
+			poiObj.setLocation(loc);		
+			
+			POIData poiData = new POIData();
+			poiData.setStreet(da.getAddress() + (da.hasArea()?(" - " + da.getArea()):""));
+			poiData.setCity(da.getTown());
+			poiData.setLatitude(da.getLat());
+			poiData.setLongitude(da.getLon());			
+			poiObj.setPoi(poiData);			
 			
 
-			tObj.setId(id);
+			poiObj.setId(id);
 			//
 			Map<String, Object> cd = new TreeMap<String, Object>();
-			cd.put("address", da.getAddress());
-			cd.put("town", da.getTown());
 			cd.put("area", da.getArea());
 
-			tObj.setCustomData(cd);
+			poiObj.setCustomData(cd);
 
-			if (!tObj.equals(oldDtobj)) {
-				storage.storeObject(tObj);
+			if (!poiObj.equals(oldDtobj)) {
+				storage.storeObject(poiObj);
 				System.out.println("CHANGED " + id);
 			}
 		}
@@ -521,17 +537,17 @@ public class EventProcessorImpl implements ServiceBusListener {
 					try {
 						oldDtobj = (InfoObject) storage.getObjectById(id);
 					} catch (NotFoundException e) {}
-					InfoObject tObj = new InfoObject();
+					InfoObject iObj = new InfoObject();
 
-					tObj.setType(ORGANIZZAZIONE_DISTRETTO);
-					tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+					iObj.setType(ORGANIZZAZIONE_DISTRETTO);
+					iObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-					tObj.setTitle(oa.getName());
-					tObj.setDescription(oa.getDescription());
+					iObj.setTitle(oa.getName());
+					iObj.setDescription(oa.getDescription());
 					double loc[] = new double[] { oa.getLat(), oa.getLon() };
-					tObj.setLocation(loc);					
+					iObj.setLocation(loc);					
 
-					tObj.setId(id);
+					iObj.setId(id);
 
 					Map<String, Object> cd = new TreeMap<String, Object>();
 					
@@ -545,10 +561,10 @@ public class EventProcessorImpl implements ServiceBusListener {
 					map.put("logo", oa.getLogo());
 					map.put("district", dod.getTitle());
 
-					tObj.setCustomData(map);
+					iObj.setCustomData(map);
 					
-					if (!tObj.equals(oldDtobj)) {
-						storage.storeObject(tObj);
+					if (!iObj.equals(oldDtobj)) {
+						storage.storeObject(iObj);
 						System.out.println("CHANGED " + id);
 					}					
 				}

@@ -6630,11 +6630,11 @@ public final class Trentinofamiglia {
     boolean hasEmail();
     String getEmail();
     
-    // optional double lat = 8;
+    // required double lat = 8;
     boolean hasLat();
     double getLat();
     
-    // optional double lon = 9;
+    // required double lon = 9;
     boolean hasLon();
     double getLon();
   }
@@ -6891,7 +6891,7 @@ public final class Trentinofamiglia {
       }
     }
     
-    // optional double lat = 8;
+    // required double lat = 8;
     public static final int LAT_FIELD_NUMBER = 8;
     private double lat_;
     public boolean hasLat() {
@@ -6901,7 +6901,7 @@ public final class Trentinofamiglia {
       return lat_;
     }
     
-    // optional double lon = 9;
+    // required double lon = 9;
     public static final int LON_FIELD_NUMBER = 9;
     private double lon_;
     public boolean hasLon() {
@@ -6952,6 +6952,14 @@ public final class Trentinofamiglia {
         return false;
       }
       if (!hasEmail()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLat()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLon()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -7326,6 +7334,14 @@ public final class Trentinofamiglia {
           
           return false;
         }
+        if (!hasLat()) {
+          
+          return false;
+        }
+        if (!hasLon()) {
+          
+          return false;
+        }
         return true;
       }
       
@@ -7655,7 +7671,7 @@ public final class Trentinofamiglia {
         onChanged();
       }
       
-      // optional double lat = 8;
+      // required double lat = 8;
       private double lat_ ;
       public boolean hasLat() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
@@ -7676,7 +7692,7 @@ public final class Trentinofamiglia {
         return this;
       }
       
-      // optional double lon = 9;
+      // required double lon = 9;
       private double lon_ ;
       public boolean hasLon() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
@@ -16524,8 +16540,8 @@ public final class Trentinofamiglia {
       "mail\030\004 \002(\t\022\014\n\004type\030\005 \002(\t\"\222\001\n\014DatiNewMedi" +
       "a\022\014\n\004name\030\001 \002(\t\022\017\n\007contact\030\002 \002(\t\022\014\n\004role" +
       "\030\003 \002(\t\022\017\n\007address\030\004 \002(\t\022\r\n\005phone\030\005 \002(\t\022\014",
-      "\n\004link\030\006 \002(\t\022\r\n\005email\030\007 \002(\t\022\013\n\003lat\030\010 \001(\001" +
-      "\022\013\n\003lon\030\t \001(\001\"s\n\020DatiAllattamento\022\n\n\002id\030" +
+      "\n\004link\030\006 \002(\t\022\r\n\005email\030\007 \002(\t\022\013\n\003lat\030\010 \002(\001" +
+      "\022\013\n\003lon\030\t \002(\001\"s\n\020DatiAllattamento\022\n\n\002id\030" +
       "\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\017\n\007address\030\003 \002(\t\022\014\n\004" +
       "town\030\004 \002(\t\022\014\n\004area\030\005 \001(\t\022\013\n\003lat\030\006 \002(\001\022\013\n" +
       "\003lon\030\007 \002(\001\"\347\001\n\033DatiOrganizzazioniDistret" +
