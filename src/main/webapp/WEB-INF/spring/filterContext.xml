@@ -39,6 +39,7 @@
         <sec:custom-filter position="PRE_AUTH_FILTER" ref="authTokenFilter" />
         <sec:intercept-url pattern="/social/readReviews/**" access="permitAll" />        
         <sec:intercept-url pattern="/sync/**" access="permitAll" />
+        <sec:intercept-url pattern="/filter/**" access="permitAll" />
         <sec:intercept-url pattern="/social/review/**" access="isFullyAuthenticated()" />
         <sec:intercept-url pattern="/social/rate/**" access="isFullyAuthenticated()" />        
     </sec:http>	

@@ -45,9 +45,6 @@ import eu.trentorise.smartcampus.presentation.data.SyncDataRequest;
 @Controller
 public class SyncController extends AbstractObjectController {
 
-//	@Autowired
-//	private BasicObjectSyncStorage storage;
-
 	@RequestMapping(method = RequestMethod.POST, value = "/sync")
 	public ResponseEntity<SyncData> synchronize(HttpServletRequest request, @RequestParam long since, @RequestBody Map<String,Object> obj) throws Exception{
 		try {

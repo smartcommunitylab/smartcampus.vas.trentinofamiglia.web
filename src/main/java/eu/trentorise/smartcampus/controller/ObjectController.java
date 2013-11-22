@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.activemq.broker.UserIDBroker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,10 +37,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import eu.trentorise.smartcampus.dt.model.BaseDTObject;
 import eu.trentorise.smartcampus.dt.model.CommunityData;
+import eu.trentorise.smartcampus.dt.model.EventObject;
 import eu.trentorise.smartcampus.dt.model.InfoObject;
+import eu.trentorise.smartcampus.dt.model.POIObject;
 import eu.trentorise.smartcampus.dt.model.Rating;
 import eu.trentorise.smartcampus.dt.model.Review;
 import eu.trentorise.smartcampus.dt.model.ReviewObject;
+import eu.trentorise.smartcampus.dt.model.TrackObject;
 import eu.trentorise.smartcampus.presentation.common.exception.NotFoundException;
 import eu.trentorise.smartcampus.presentation.storage.sync.BasicObjectSyncStorage;
 import eu.trentorise.smartcampus.storage.ReviewsMongoStorage;
@@ -52,6 +56,67 @@ public class ObjectController extends AbstractObjectController {
 
 	@Autowired
 	private ReviewsMongoStorage reviewStorage;
+	
+	@RequestMapping(method = RequestMethod.GET, value="/filter/events")
+	public ResponseEntity<List<EventObject>> getAllEventObject(HttpServletRequest request) throws Exception {
+		List<EventObject> list = getAllObject(request, EventObject.class);
+		String userId = null;
+		try {
+			userId = getUserId();
+		} catch (SecurityException e) {
+			
+		}
+		for (BaseDTObject bo : list) {
+			bo.filterUserData(userId);
+		}
+		return new ResponseEntity<List<EventObject>>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/filter/pois")
+	public ResponseEntity<List<POIObject>> getAllPOIObject(HttpServletRequest request) throws Exception {
+		List<POIObject> list = getAllObject(request, POIObject.class);
+		String userId = null;
+		try {
+			userId = getUserId();
+		} catch (SecurityException e) {
+			
+		}
+		for (BaseDTObject bo : list) {
+			bo.filterUserData(userId);
+		}
+		return new ResponseEntity<List<POIObject>>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/filter/infos")
+	public ResponseEntity<List<InfoObject>> getAllInfoObject(HttpServletRequest request) throws Exception {
+		List<InfoObject> list = getAllObject(request, InfoObject.class);
+		String userId = null;
+		try {
+			userId = getUserId();
+		} catch (SecurityException e) {
+			
+		}
+		for (BaseDTObject bo : list) {
+			bo.filterUserData(userId);
+		}
+		return new ResponseEntity<List<InfoObject>>(list, HttpStatus.OK);
+	}	
+	
+	@RequestMapping(method = RequestMethod.GET, value="/filter/tracks")
+	public ResponseEntity<List<TrackObject>> getAllITrackObject(HttpServletRequest request) throws Exception {
+		List<TrackObject> list = getAllObject(request, TrackObject.class);
+		String userId = null;
+		try {
+			userId = getUserId();
+		} catch (SecurityException e) {
+			
+		}
+		for (BaseDTObject bo : list) {
+			bo.filterUserData(userId);
+		}
+		return new ResponseEntity<List<TrackObject>>(list, HttpStatus.OK);
+	}		
+	
 
 	@RequestMapping(value = "/social/rate/{id}", method = RequestMethod.PUT)
 	public void rate(HttpServletRequest request, HttpServletResponse response, @RequestParam String rating, @PathVariable String id) {

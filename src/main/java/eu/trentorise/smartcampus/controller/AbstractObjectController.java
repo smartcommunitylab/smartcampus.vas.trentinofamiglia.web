@@ -59,7 +59,6 @@ public class AbstractObjectController {
 	}	
 
 	public <T extends BaseDTObject> List<T> getAllObject(HttpServletRequest request, Class<T> cls) throws Exception {
-		String userId = getUserId();
 		try {
 			ObjectFilter filterObj = null;
 			Map<String, Object> criteria = null;
@@ -71,9 +70,6 @@ public class AbstractObjectController {
 					criteria.put("type",
 							Collections.singletonMap("$in",
 									filterObj.getTypes()));
-				}
-				if (filterObj.isMyObjects()) {
-					criteria.put("attending", userId);
 				}
 			} else {
 				filterObj = new ObjectFilter();

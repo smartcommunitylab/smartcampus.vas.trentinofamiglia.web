@@ -54,7 +54,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
 	private static final String PERSONA_AUDIT = "Persona Audit";
-			private static final String CERTIFICATORE_AUDIT = "Certificatori \"Audit\"";
+			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
 			private static final String VALUTATORE_AUDIT = " Valutatori \"Audit\"";
 	
 	
@@ -361,7 +361,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			dtobj.setDescription("");
 			dtobj.setTitle(pa.getName());
 			if ("Consulente".equals(pa.getType())) {
-				dtobj.setType(CERTIFICATORE_AUDIT);
+				dtobj.setType(CONSULENTE_AUDIT);
 			} else if ("Valutatore".equals(pa.getType())) {
 				dtobj.setType(VALUTATORE_AUDIT);
 			}
