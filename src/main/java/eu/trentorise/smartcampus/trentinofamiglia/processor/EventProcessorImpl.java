@@ -14,14 +14,10 @@ import java.util.TreeMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.Message;
-import com.googlecode.protobuf.format.JsonFormat;
-import com.mongodb.util.JSON;
 
 import eu.trentorise.smartcampus.dt.model.EventObject;
 import eu.trentorise.smartcampus.dt.model.InfoObject;
@@ -45,6 +41,7 @@ import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinof
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoGarda;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneAderente;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamiglia;
+import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.StrutturaRicettiva;
 import eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.BikeTrack;
 import eu.trentorise.smartcampus.trentinofamiglia.listener.Subscriber;
@@ -53,24 +50,34 @@ import eu.trentorise.smartcampus.trentinofamiglia.listener.Subscriber;
 
 public class EventProcessorImpl implements ServiceBusListener {
 
-	private static final String DOSSIER = "Dossier";
-	private static final String ORGANIZZAZIONE = "Organizzazione";
-	private static final String EVENTO = "Evento";
-	private static final String MANIFESTAZIONE = "Manifestazione";
-	private static final String STRUTTURA_RICETTIVA = "Struttura ricettiva";
-	private static final String PERSONA_AUDIT = "Persona Audit";
-	private static final String NEW_MEDIA = "New Media Education";
-	private static final String ALLATTAMENTO = "Zona allattamento";
-
-	private static final String BIKE_TRACK = "Pista ciclabile";
-	private static final String BIKEWALK_TRACK = "Pista ciclopedonale";
-	private static final String WALK_TRACK = "Trekking";
-
-	private static final String DISTRETTO = "Distretto";
-	private static final String ORGANIZZAZIONE_DISTRETTO = "Organizzazione distretto";
-	private static final String ATTIVITA_DISTRETTO = "Attivita distretto";
+			private static final String DOSSIER = "Politiche provinciali";
+			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
-	private static final String EVENTO_GARDA = "Evento Garda";
+	private static final String PERSONA_AUDIT = "Persona Audit";
+			private static final String CERTIFICATORE_AUDIT = "Certificatori \"Audit\"";
+			private static final String VALUTATORE_AUDIT = " Valutatori \"Audit\"";
+	
+	
+			private static final String BIKE_TRACK = "Pista ciclabile";
+	
+	private static final String DISTRETTO = "Distretto";
+			private static final String ATTIVITA_DISTRETTO = "Politiche dei distretti";
+	
+			private static final String EVENTO = "Estate giovani e famiglia";
+			private static final String MANIFESTAZIONE = "Notizie";
+			private static final String STRUTTURA_RICETTIVA = "Vacanze al mare";
+
+			private static final String NEW_MEDIA = "Tavolo \"Nuovi Media\"";
+			private static final String ALLATTAMENTO = "Punti allattamento";
+
+
+			private static final String BIKEWALK_TRACK = "Piste ciclopedonali";
+			private static final String WALK_TRACK = "Passeggiate";
+
+			private static final String ORGANIZZAZIONE_DISTRETTO = "Distretti e organizzazioni";
+	
+			private static final String EVENTO_GARDA = "Alto Garda";
+			private static final String FAMILY_TRENTINO = "\"Family in Trentino\"";
 
 	@Autowired
 	private BasicObjectSyncStorage storage;
@@ -113,8 +120,12 @@ public class EventProcessorImpl implements ServiceBusListener {
 					updateProgrammi(data);
 				} else if (Subscriber.GET_EVENTI_GARDA.equals(methodName)) {
 					updateEventiGarda(data);
+				} else if (Subscriber.GET_FAMILY_TRENTINO.equals(methodName)) {
+					updateFamilyTrentino(data);
 				}
 
+				
+				
 			}
 
 		} catch (Exception e) {
@@ -349,7 +360,11 @@ public class EventProcessorImpl implements ServiceBusListener {
 			InfoObject dtobj = new InfoObject();
 			dtobj.setDescription("");
 			dtobj.setTitle(pa.getName());
-			dtobj.setType(PERSONA_AUDIT);
+			if ("Consulente".equals(pa.getType())) {
+				dtobj.setType(CERTIFICATORE_AUDIT);
+			} else if ("Valutatore".equals(pa.getType())) {
+				dtobj.setType(VALUTATORE_AUDIT);
+			}
 			dtobj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
 			dtobj.setId(id);
@@ -358,7 +373,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			cd.put("name", pa.getName());
 			cd.put("email", pa.getEmail());
 			cd.put("date", pa.getDate());
-			cd.put("type", pa.getType());
+//			cd.put("type", pa.getType());
 			dtobj.setCustomData(cd);
 
 			if (!dtobj.equals(oldDtobj)) {
@@ -497,31 +512,31 @@ public class EventProcessorImpl implements ServiceBusListener {
 		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiOrganizzazioniDistretto dod = DatiOrganizzazioniDistretto.parseFrom(bs);
-			String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getId());
-
-			InfoObject oldDtobj = null;
-			try {
-				oldDtobj = (InfoObject) storage.getObjectById(id);
-			} catch (NotFoundException e) {}
-			InfoObject tObj = new InfoObject();
-
-			tObj.setType(DISTRETTO);
-			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
-
-			tObj.setTitle(dod.getTitle());
-			tObj.setDescription(dod.getDescription());
-
-			tObj.setId(id);
-
-			Map<String, Object> cd = new TreeMap<String, Object>();
-			cd.put("alias", dod.getAlias());
-
-			tObj.setCustomData(cd);
-			
-			if (!tObj.equals(oldDtobj)) {
-				storage.storeObject(tObj);
-				System.out.println("CHANGED " + id);
-			}
+//			String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getId());
+//
+//			InfoObject oldDtobj = null;
+//			try {
+//				oldDtobj = (InfoObject) storage.getObjectById(id);
+//			} catch (NotFoundException e) {}
+//			InfoObject tObj = new InfoObject();
+//
+//			tObj.setType(DISTRETTO);
+//			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+//
+//			tObj.setTitle(dod.getTitle());
+//			tObj.setDescription(dod.getDescription());
+//
+//			tObj.setId(id);
+//
+//			Map<String, Object> cd = new TreeMap<String, Object>();
+//			cd.put("alias", dod.getAlias());
+//
+//			tObj.setCustomData(cd);
+//			
+//			if (!tObj.equals(oldDtobj)) {
+//				storage.storeObject(tObj);
+//				System.out.println("CHANGED " + id);
+//			}
 			
 			updateOrganizzazioniDistretto(dod);
 			
@@ -602,13 +617,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 					tObj.setId(id);
 
 					Map<String, Object> cd = new TreeMap<String, Object>();
-//					cd.put("alias", dpd.getAlias());					
 					
 					Map<String, Object> map = new TreeMap<String, Object>();
-//					map.put("goal", daz.getGoal());
-//					map.put("contact", daz.getContact());
-//					map.put("times", daz.getTimes());
-//					map.put("activity title", dat.getTitle());
 					map.put("contact", dat.getContact());
 					map.put("times", dat.getTimes());
 					map.put("program year", dp.getYear());
@@ -681,6 +691,49 @@ public class EventProcessorImpl implements ServiceBusListener {
 		}
 
 	}	
+	
+	public void updateFamilyTrentino(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
+		List<Map> fsl = new ArrayList<Map>();
+		for (ByteString bs : bsl) {
+			OrganizzazioneFamilyTrentino pa = OrganizzazioneFamilyTrentino.parseFrom(bs);
+			String id = encode(Subscriber.GET_FAMILY_TRENTINO + "_" + pa.getName());
+
+			POIObject oldDtobj = null;
+			try {
+				oldDtobj = (POIObject) storage.getObjectById(id);
+			} catch (NotFoundException e) {}
+
+			POIObject poiObject = new POIObject();
+			poiObject.setDescription("");
+			poiObject.setTitle(pa.getName());
+			poiObject.setType(FAMILY_TRENTINO);
+			poiObject.setSource(Subscriber.TRENTINOFAMIGLIA);
+
+			double loc[] = new double[] { pa.getLat(), pa.getLon()};
+			poiObject.setLocation(loc);			
+			
+			POIData poiData = new POIData();
+			poiData.setStreet(pa.getAddress());
+			poiData.setLatitude(pa.getLat());
+			poiData.setLongitude(pa.getLon());		
+			poiObject.setPoi(poiData);
+			
+			poiObject.setId(id);
+
+			Map<String, Object> cd = new TreeMap<String, Object>();
+			cd.put("phone", pa.getPhone());
+			cd.put("email", pa.getEmail());
+			cd.put("web", pa.getWeb());
+			cd.put("subtype", pa.getType());
+			poiObject.setCustomData(cd);
+
+			if (!poiObject.equals(oldDtobj)) {
+				storage.storeObject(poiObject);
+				System.out.println("CHANGED " + id);
+			}
+		}
+	}	
+	
 	
 	private Long parseDate(String date) {
 		try {

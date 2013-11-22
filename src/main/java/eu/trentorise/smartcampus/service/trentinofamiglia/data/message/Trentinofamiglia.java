@@ -16426,6 +16426,1107 @@ public final class Trentinofamiglia {
     // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.EventoGarda)
   }
   
+  public interface OrganizzazioneFamilyTrentinoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string name = 1;
+    boolean hasName();
+    String getName();
+    
+    // required string address = 2;
+    boolean hasAddress();
+    String getAddress();
+    
+    // required string phone = 3;
+    boolean hasPhone();
+    String getPhone();
+    
+    // required string email = 4;
+    boolean hasEmail();
+    String getEmail();
+    
+    // required string web = 5;
+    boolean hasWeb();
+    String getWeb();
+    
+    // required string type = 6;
+    boolean hasType();
+    String getType();
+    
+    // optional string fax = 7;
+    boolean hasFax();
+    String getFax();
+    
+    // optional double lat = 8;
+    boolean hasLat();
+    double getLat();
+    
+    // optional double lon = 9;
+    boolean hasLon();
+    double getLon();
+  }
+  public static final class OrganizzazioneFamilyTrentino extends
+      com.google.protobuf.GeneratedMessage
+      implements OrganizzazioneFamilyTrentinoOrBuilder {
+    // Use OrganizzazioneFamilyTrentino.newBuilder() to construct.
+    private OrganizzazioneFamilyTrentino(Builder builder) {
+      super(builder);
+    }
+    private OrganizzazioneFamilyTrentino(boolean noInit) {}
+    
+    private static final OrganizzazioneFamilyTrentino defaultInstance;
+    public static OrganizzazioneFamilyTrentino getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public OrganizzazioneFamilyTrentino getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string name = 1;
+    public static final int NAME_FIELD_NUMBER = 1;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string address = 2;
+    public static final int ADDRESS_FIELD_NUMBER = 2;
+    private java.lang.Object address_;
+    public boolean hasAddress() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          address_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string phone = 3;
+    public static final int PHONE_FIELD_NUMBER = 3;
+    private java.lang.Object phone_;
+    public boolean hasPhone() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getPhone() {
+      java.lang.Object ref = phone_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          phone_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPhoneBytes() {
+      java.lang.Object ref = phone_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        phone_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string email = 4;
+    public static final int EMAIL_FIELD_NUMBER = 4;
+    private java.lang.Object email_;
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          email_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string web = 5;
+    public static final int WEB_FIELD_NUMBER = 5;
+    private java.lang.Object web_;
+    public boolean hasWeb() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getWeb() {
+      java.lang.Object ref = web_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          web_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getWebBytes() {
+      java.lang.Object ref = web_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        web_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string type = 6;
+    public static final int TYPE_FIELD_NUMBER = 6;
+    private java.lang.Object type_;
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          type_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string fax = 7;
+    public static final int FAX_FIELD_NUMBER = 7;
+    private java.lang.Object fax_;
+    public boolean hasFax() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public String getFax() {
+      java.lang.Object ref = fax_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          fax_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFaxBytes() {
+      java.lang.Object ref = fax_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        fax_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional double lat = 8;
+    public static final int LAT_FIELD_NUMBER = 8;
+    private double lat_;
+    public boolean hasLat() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public double getLat() {
+      return lat_;
+    }
+    
+    // optional double lon = 9;
+    public static final int LON_FIELD_NUMBER = 9;
+    private double lon_;
+    public boolean hasLon() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public double getLon() {
+      return lon_;
+    }
+    
+    private void initFields() {
+      name_ = "";
+      address_ = "";
+      phone_ = "";
+      email_ = "";
+      web_ = "";
+      type_ = "";
+      fax_ = "";
+      lat_ = 0D;
+      lon_ = 0D;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasName()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasAddress()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPhone()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasEmail()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasWeb()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getAddressBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getPhoneBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getWebBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getTypeBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getFaxBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeDouble(8, lat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeDouble(9, lon_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getAddressBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getPhoneBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getEmailBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getWebBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getTypeBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getFaxBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, lat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, lon_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentinoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_fieldAccessorTable;
+      }
+      
+      // Construct using eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        address_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        phone_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        email_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        web_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        type_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fax_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
+        lat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        lon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.getDescriptor();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino getDefaultInstanceForType() {
+        return eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.getDefaultInstance();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino build() {
+        eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino buildPartial() {
+        eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino result = new eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.address_ = address_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.phone_ = phone_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.email_ = email_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.web_ = web_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.fax_ = fax_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.lat_ = lat_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.lon_ = lon_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino) {
+          return mergeFrom((eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino other) {
+        if (other == eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.getDefaultInstance()) return this;
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasAddress()) {
+          setAddress(other.getAddress());
+        }
+        if (other.hasPhone()) {
+          setPhone(other.getPhone());
+        }
+        if (other.hasEmail()) {
+          setEmail(other.getEmail());
+        }
+        if (other.hasWeb()) {
+          setWeb(other.getWeb());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasFax()) {
+          setFax(other.getFax());
+        }
+        if (other.hasLat()) {
+          setLat(other.getLat());
+        }
+        if (other.hasLon()) {
+          setLon(other.getLon());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasName()) {
+          
+          return false;
+        }
+        if (!hasAddress()) {
+          
+          return false;
+        }
+        if (!hasPhone()) {
+          
+          return false;
+        }
+        if (!hasEmail()) {
+          
+          return false;
+        }
+        if (!hasWeb()) {
+          
+          return false;
+        }
+        if (!hasType()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              name_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              address_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              phone_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              email_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              web_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              type_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              bitField0_ |= 0x00000040;
+              fax_ = input.readBytes();
+              break;
+            }
+            case 65: {
+              bitField0_ |= 0x00000080;
+              lat_ = input.readDouble();
+              break;
+            }
+            case 73: {
+              bitField0_ |= 0x00000100;
+              lon_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string name = 1;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+      }
+      
+      // required string address = 2;
+      private java.lang.Object address_ = "";
+      public boolean hasAddress() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setAddress(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearAddress() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      void setAddress(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        address_ = value;
+        onChanged();
+      }
+      
+      // required string phone = 3;
+      private java.lang.Object phone_ = "";
+      public boolean hasPhone() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getPhone() {
+        java.lang.Object ref = phone_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          phone_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPhone(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        phone_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPhone() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        phone_ = getDefaultInstance().getPhone();
+        onChanged();
+        return this;
+      }
+      void setPhone(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        phone_ = value;
+        onChanged();
+      }
+      
+      // required string email = 4;
+      private java.lang.Object email_ = "";
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmail(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      void setEmail(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        email_ = value;
+        onChanged();
+      }
+      
+      // required string web = 5;
+      private java.lang.Object web_ = "";
+      public boolean hasWeb() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getWeb() {
+        java.lang.Object ref = web_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          web_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setWeb(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        web_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearWeb() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        web_ = getDefaultInstance().getWeb();
+        onChanged();
+        return this;
+      }
+      void setWeb(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        web_ = value;
+        onChanged();
+      }
+      
+      // required string type = 6;
+      private java.lang.Object type_ = "";
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setType(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      void setType(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        type_ = value;
+        onChanged();
+      }
+      
+      // optional string fax = 7;
+      private java.lang.Object fax_ = "";
+      public boolean hasFax() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public String getFax() {
+        java.lang.Object ref = fax_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          fax_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFax(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        fax_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFax() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fax_ = getDefaultInstance().getFax();
+        onChanged();
+        return this;
+      }
+      void setFax(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000040;
+        fax_ = value;
+        onChanged();
+      }
+      
+      // optional double lat = 8;
+      private double lat_ ;
+      public boolean hasLat() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public double getLat() {
+        return lat_;
+      }
+      public Builder setLat(double value) {
+        bitField0_ |= 0x00000080;
+        lat_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLat() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        lat_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // optional double lon = 9;
+      private double lon_ ;
+      public boolean hasLon() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public double getLon() {
+        return lon_;
+      }
+      public Builder setLon(double value) {
+        bitField0_ |= 0x00000100;
+        lon_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLon() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        lon_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.OrganizzazioneFamilyTrentino)
+    }
+    
+    static {
+      defaultInstance = new OrganizzazioneFamilyTrentino(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinofamiglia.data.message.OrganizzazioneFamilyTrentino)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_EventoFamiglia_descriptor;
   private static
@@ -16501,6 +17602,11 @@ public final class Trentinofamiglia {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_EventoGarda_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -16577,7 +17683,11 @@ public final class Trentinofamiglia {
       "e\030\005 \002(\t\022\020\n\010location\030\006 \001(\t\022\020\n\010category\030\007 " +
       "\002(\t\022\014\n\004from\030\010 \002(\003\022\n\n\002to\030\t \002(\003\022\013\n\003lat\030\n \001" +
       "(\001\022\013\n\003lon\030\013 \001(\001\022\r\n\005price\030\014 \002(\t\022\014\n\004free\030\r" +
-      " \002(\t"
+      " \002(\t\"\235\001\n\034OrganizzazioneFamilyTrentino\022\014\n" +
+      "\004name\030\001 \002(\t\022\017\n\007address\030\002 \002(\t\022\r\n\005phone\030\003 " +
+      "\002(\t\022\r\n\005email\030\004 \002(\t\022\013\n\003web\030\005 \002(\t\022\014\n\004type\030",
+      "\006 \002(\t\022\013\n\003fax\030\007 \001(\t\022\013\n\003lat\030\010 \001(\001\022\013\n\003lon\030\t" +
+      " \001(\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -16704,6 +17814,14 @@ public final class Trentinofamiglia {
               new java.lang.String[] { "Title", "Description", "Link", "ShortText", "Place", "Location", "Category", "From", "To", "Lat", "Lon", "Price", "Free", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoGarda.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoGarda.Builder.class);
+          internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_descriptor =
+            getDescriptor().getMessageTypes().get(15);
+          internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_OrganizzazioneFamilyTrentino_descriptor,
+              new java.lang.String[] { "Name", "Address", "Phone", "Email", "Web", "Type", "Fax", "Lat", "Lon", },
+              eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.class,
+              eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.OrganizzazioneFamilyTrentino.Builder.class);
           return null;
         }
       };

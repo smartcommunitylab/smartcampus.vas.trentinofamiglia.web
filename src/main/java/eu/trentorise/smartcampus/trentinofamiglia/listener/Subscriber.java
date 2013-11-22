@@ -43,6 +43,8 @@ public class Subscriber {
 	
 	public static final String GET_EVENTI_GARDA = "GetEventiGarda";
 	
+	public static final String GET_FAMILY_TRENTINO = "GetFamilyTrentino";
+	
 	
 	public static final String TRENTINOFAMIGLIA = "smartcampus.service.trentinofamiglia";
 	public static final String TRACKS = "smartcampus.service.trentinotrack";
@@ -61,12 +63,13 @@ public class Subscriber {
 			client.subscribeService(TRENTINOFAMIGLIA, GET_PERSONE_AUDIT, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_NEW_MEDIA, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_ALLATTAMENTO, params);
-			client.subscribeService(TRACKS, GET_BIKE_TRACKS, params);
+//			client.subscribeService(TRACKS, GET_BIKE_TRACKS, params);
 			client.subscribeService(TRACKS, GET_WALKBIKE_TRACKS, params);
 			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);			
 			client.subscribeService(TRENTINOFAMIGLIA, GET_DISTRETTI, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_PROGRAMMI, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_EVENTI_GARDA, params);
+			client.subscribeService(TRENTINOFAMIGLIA, GET_FAMILY_TRENTINO, params);
 		} catch (InvocationException e) {
 			logger.error("Failed to subscribe for service events: "+e.getMessage());
 		}
