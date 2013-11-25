@@ -54,8 +54,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
 	private static final String PERSONA_AUDIT = "Persona Audit";
-			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
-			private static final String VALUTATORE_AUDIT = " Valutatori \"Audit\"";
+			private static final String CONSULENTE_AUDIT = "Certificatori \"Audit\"";
+			private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
 	
 	
 			private static final String BIKE_TRACK = "Pista ciclabile";
@@ -444,8 +444,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 			tObj.setType(type);
 			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-			tObj.setTitle("");
-			tObj.setDescription("");
+			tObj.setTitle(bt.getLabel());
+			tObj.setDescription(bt.getAbout());
 
 			tObj.setId(id);
 			//
