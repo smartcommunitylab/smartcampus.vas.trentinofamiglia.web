@@ -54,7 +54,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
 	private static final String PERSONA_AUDIT = "Persona Audit";
-			private static final String CONSULENTE_AUDIT = "Certificatori \"Audit\"";
+			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
 			private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
 	
 	
@@ -451,8 +451,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 			//
 			Map<String, Object> cd = new TreeMap<String, Object>();
 			cd.put("length", bt.getLength());
-			cd.put("label", bt.getLabel());
-			cd.put("about", bt.getAbout());
 
 			tObj.setCustomData(cd);
 
