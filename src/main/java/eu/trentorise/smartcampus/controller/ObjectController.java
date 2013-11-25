@@ -57,7 +57,7 @@ public class ObjectController extends AbstractObjectController {
 	@Autowired
 	private ReviewsMongoStorage reviewStorage;
 	
-	@RequestMapping(method = RequestMethod.GET, value="/filter/events")
+	@RequestMapping(method = RequestMethod.GET, value="/events")
 	public ResponseEntity<List<EventObject>> getAllEventObject(HttpServletRequest request) throws Exception {
 		List<EventObject> list = getAllObject(request, EventObject.class);
 		String userId = null;
@@ -72,7 +72,7 @@ public class ObjectController extends AbstractObjectController {
 		return new ResponseEntity<List<EventObject>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/filter/pois")
+	@RequestMapping(method = RequestMethod.GET, value="/pois")
 	public ResponseEntity<List<POIObject>> getAllPOIObject(HttpServletRequest request) throws Exception {
 		List<POIObject> list = getAllObject(request, POIObject.class);
 		String userId = null;
@@ -87,7 +87,7 @@ public class ObjectController extends AbstractObjectController {
 		return new ResponseEntity<List<POIObject>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/filter/infos")
+	@RequestMapping(method = RequestMethod.GET, value="/infos")
 	public ResponseEntity<List<InfoObject>> getAllInfoObject(HttpServletRequest request) throws Exception {
 		List<InfoObject> list = getAllObject(request, InfoObject.class);
 		String userId = null;
@@ -102,7 +102,7 @@ public class ObjectController extends AbstractObjectController {
 		return new ResponseEntity<List<InfoObject>>(list, HttpStatus.OK);
 	}	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/filter/tracks")
+	@RequestMapping(method = RequestMethod.GET, value="/tracks")
 	public ResponseEntity<List<TrackObject>> getAllITrackObject(HttpServletRequest request) throws Exception {
 		List<TrackObject> list = getAllObject(request, TrackObject.class);
 		String userId = null;

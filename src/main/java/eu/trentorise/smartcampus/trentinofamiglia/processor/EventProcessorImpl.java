@@ -53,14 +53,12 @@ public class EventProcessorImpl implements ServiceBusListener {
 			private static final String DOSSIER = "Politiche provinciali";
 			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
-	private static final String PERSONA_AUDIT = "Persona Audit";
-			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
+			private static final String CONSULENTE_AUDIT = "Certificatori \"Audit\"";
 			private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
 	
 	
 			private static final String BIKE_TRACK = "Pista ciclabile";
 	
-	private static final String DISTRETTO = "Distretto";
 			private static final String ATTIVITA_DISTRETTO = "Politiche dei distretti";
 	
 			private static final String EVENTO = "Estate giovani e famiglia";
@@ -152,7 +150,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateDossier(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DossierFamiglia df = DossierFamiglia.parseFrom(bs);
 			String id = encode(Subscriber.GET_DOSSIER + "_" + df.getId());
@@ -186,7 +183,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateOrganizzazioni(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			OrganizzazioneFamiglia of = OrganizzazioneFamiglia.parseFrom(bs);
 			String id = encode(Subscriber.GET_ORGANIZZAZIONI + "_" + of.getOrder());
@@ -222,7 +218,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateEventi(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			EventoFamiglia ef = EventoFamiglia.parseFrom(bs);
 			String id = encode(Subscriber.GET_EVENTI + "_" + ef.getId() + "_" + ef.getPlace());
@@ -266,7 +261,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateManifestazioni(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiManifestazione dm = DatiManifestazione.parseFrom(bs);
 			String id = encode(Subscriber.GET_MANIFESTAZIONI + "_" + dm.getId());
@@ -297,7 +291,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateStruttureRicettive(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			StrutturaRicettiva sr = StrutturaRicettiva.parseFrom(bs);
 			String id = encode(Subscriber.GET_STRUTTURE_RICETTIVE + "_" + sr.getId());
@@ -347,7 +340,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updatePersoneAudit(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiPersonaAudit pa = DatiPersonaAudit.parseFrom(bs);
 			String id = encode(Subscriber.GET_PERSONE_AUDIT + "_" + pa.getId());
@@ -384,7 +376,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateNewMedia(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiNewMedia dnm = DatiNewMedia.parseFrom(bs);
 			String id = encode(Subscriber.GET_NEW_MEDIA + "_" + dnm.getName());
@@ -428,7 +419,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateTrack(List<ByteString> bsl, String methodName, String type) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			BikeTrack bt = BikeTrack.parseFrom(bs);
 			String id = encode(methodName + "_" + bt.getId());
@@ -451,6 +441,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 			//
 			Map<String, Object> cd = new TreeMap<String, Object>();
 			cd.put("length", bt.getLength());
+			cd.put("label", bt.getLabel());
+			cd.put("about", bt.getAbout());
 
 			tObj.setCustomData(cd);
 
@@ -462,7 +454,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateAllattamento(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiAllattamento da = DatiAllattamento.parseFrom(bs);
 			String id = encode(Subscriber.GET_ALLATTAMENTO + "_" + da.getId());
@@ -507,7 +498,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	public void updateDistretti(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiOrganizzazioniDistretto dod = DatiOrganizzazioniDistretto.parseFrom(bs);
 //			String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getId());
@@ -562,8 +552,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 					iObj.setId(id);
 
-					Map<String, Object> cd = new TreeMap<String, Object>();
-					
 					Map<String, Object> map = new TreeMap<String, Object>();
 					map.put("alias", oa.getAlias());
 					map.put("address", oa.getAddress());
@@ -586,7 +574,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	
 
 	public void updateProgrammi(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			DatiProgrammiDistretto dpd = DatiProgrammiDistretto.parseFrom(bs);
 			updateAttivita(dpd);
@@ -614,8 +601,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 					tObj.setId(id);
 
-					Map<String, Object> cd = new TreeMap<String, Object>();
-					
 					Map<String, Object> map = new TreeMap<String, Object>();
 					map.put("contact", dat.getContact());
 					map.put("times", dat.getTimes());
@@ -646,7 +631,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 	
 	public void updateEventiGarda(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			EventoGarda eg = EventoGarda.parseFrom(bs);
 			String id = encode(Subscriber.GET_EVENTI_GARDA + "_" + eg.getTitle());
@@ -691,7 +675,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}	
 	
 	public void updateFamilyTrentino(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
-		List<Map> fsl = new ArrayList<Map>();
 		for (ByteString bs : bsl) {
 			OrganizzazioneFamilyTrentino pa = OrganizzazioneFamilyTrentino.parseFrom(bs);
 			String id = encode(Subscriber.GET_FAMILY_TRENTINO + "_" + pa.getName());
