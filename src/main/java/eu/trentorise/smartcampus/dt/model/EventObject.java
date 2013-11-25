@@ -97,5 +97,30 @@ public class EventObject extends BaseDTObject {
 //			filterUserData(event, userId);
 //		}
 //	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((poiId == null) ? 0 : poiId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EventObject other = (EventObject) obj;
+		if (poiId == null) {
+			if (other.poiId != null)
+				return false;
+		} else if (!poiId.equals(other.poiId))
+			return false;
+		return true;
+	}	
 
 }
