@@ -22,11 +22,14 @@ public class Review implements Serializable {
 	
 	private String userId;
 	private String comment;
+	private Integer rating;
+	private String author;
+	private long date;
 	
 	public Review() {
 		super();
 	}
-	public Review(String user, String comment) {
+	public Review(String user, String comment, int rating) {
 		this.userId = user;
 		this.comment = comment;
 	}
@@ -42,7 +45,22 @@ public class Review implements Serializable {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	
-	
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public long getDate() {
+		return date;
+	}
+	public void setDate(long date) {
+		this.date = date;
+	}
 }

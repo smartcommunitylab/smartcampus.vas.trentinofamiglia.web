@@ -112,6 +112,11 @@ public class AbstractObjectController {
 		return bp.getUserId();
 	}	
 	
+	protected BasicProfile getUser() throws SecurityException, ProfileServiceException {
+		String fromCtx = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		BasicProfile bp = profileService.getBasicProfile(fromCtx);
+		return bp;
+	}	
 	
 
 }

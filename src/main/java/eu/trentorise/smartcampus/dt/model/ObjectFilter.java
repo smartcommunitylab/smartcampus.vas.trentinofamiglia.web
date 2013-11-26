@@ -22,7 +22,7 @@ import java.util.SortedMap;
 
 public class ObjectFilter {
 
-//	private boolean myObjects;
+	private boolean myObjects;
 	private double[] center;
 	private Double radius;
 	private List<String> types;
@@ -117,13 +117,13 @@ public class ObjectFilter {
 		this.criteria = criteria;
 	}
 
-//	public boolean isMyObjects() {
-//		return myObjects;
-//	}
-//
-//	public void setMyObjects(boolean myObjects) {
-//		this.myObjects = myObjects;
-//	}
+	public boolean isMyObjects() {
+		return myObjects;
+	}
+
+	public void setMyObjects(boolean myObjects) {
+		this.myObjects = myObjects;
+	}
 
 	public String getClassName() {
 		return className;

@@ -17,7 +17,6 @@ package eu.trentorise.smartcampus.dt.model;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.TreeMap;
 
 import eu.trentorise.smartcampus.presentation.common.util.Util;
 import eu.trentorise.smartcampus.presentation.data.BasicObject;

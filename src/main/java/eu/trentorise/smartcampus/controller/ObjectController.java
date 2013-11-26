@@ -17,13 +17,10 @@ package eu.trentorise.smartcampus.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.activemq.broker.UserIDBroker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +43,7 @@ import eu.trentorise.smartcampus.dt.model.ReviewObject;
 import eu.trentorise.smartcampus.dt.model.TrackObject;
 import eu.trentorise.smartcampus.presentation.common.exception.NotFoundException;
 import eu.trentorise.smartcampus.presentation.storage.sync.BasicObjectSyncStorage;
+import eu.trentorise.smartcampus.profileservice.model.BasicProfile;
 import eu.trentorise.smartcampus.storage.ReviewsMongoStorage;
 
 @Controller
@@ -119,7 +117,7 @@ public class ObjectController extends AbstractObjectController {
 	
 
 	@RequestMapping(value = "/social/rate/{id}", method = RequestMethod.PUT)
-	public void rate(HttpServletRequest request, HttpServletResponse response, @RequestParam String rating, @PathVariable String id) {
+	public void rate(HttpServletResponse response, @RequestParam String rating, @PathVariable String id) {
 		String userId = null;
 		try {
 			try {
@@ -132,49 +130,8 @@ public class ObjectController extends AbstractObjectController {
 			
 			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(id);
 
-			if (obj instanceof InfoObject) {
-				logger.error("Cannot rate InfoObject with id " + id + " as user " + userId);
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}
-
 			Integer iRating = Integer.parseInt(rating);
-			if (iRating > 5)
-				iRating = 5;
-			if (iRating < 0)
-				iRating = 0;
-
-			double avg = 0;
-
-			Rating newRating = null;
-
-			if (obj.getCommunityData() == null) {
-				CommunityData cd = new CommunityData();
-				cd.setRatings(new ArrayList<Rating>());
-				obj.setCommunityData(cd);
-			}
-
-			for (Rating rat : obj.getCommunityData().getRatings()) {
-				if (userId.equals(rat.getUserId())) {
-					newRating = rat;
-					break;
-				}
-			}
-
-			if (newRating == null) {
-				newRating = new Rating(userId, iRating);
-				obj.getCommunityData().getRatings().add(newRating);
-			} else {
-				newRating.setValue(iRating);
-			}
-
-			for (Rating rat : obj.getCommunityData().getRatings()) {
-				avg += rat.getValue();
-			}
-			avg = avg / obj.getCommunityData().getRatings().size();
-
-			obj.getCommunityData().setAverageRating((int) avg);
-			obj.getCommunityData().setRatingsCount(obj.getCommunityData().getRatings().size());
+			updateRating(userId, obj, iRating);
 
 			syncStorage.storeObject(obj);
 		} catch (NotFoundException e) {
@@ -186,6 +143,47 @@ public class ObjectController extends AbstractObjectController {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 
+	}
+
+	private Integer updateRating(String userId, BaseDTObject obj, Integer iRating) {
+		if (iRating == null || iRating < 0)
+			iRating = 0;
+		if (iRating > 5)
+			iRating = 5;
+
+		double avg = 0;
+
+		Rating newRating = null;
+
+		if (obj.getCommunityData() == null) {
+			CommunityData cd = new CommunityData();
+			cd.setRatings(new ArrayList<Rating>());
+			obj.setCommunityData(cd);
+		}
+
+		for (Rating rat : obj.getCommunityData().getRatings()) {
+			if (userId.equals(rat.getUserId())) {
+				newRating = rat;
+				break;
+			}
+		}
+
+		if (newRating == null) {
+			newRating = new Rating(userId, iRating);
+			obj.getCommunityData().getRatings().add(newRating);
+		} else {
+			newRating.setValue(iRating);
+		}
+
+		for (Rating rat : obj.getCommunityData().getRatings()) {
+			avg += rat.getValue();
+		}
+		avg = avg / obj.getCommunityData().getRatings().size();
+
+		obj.getCommunityData().setAverageRating((int) avg);
+		obj.getCommunityData().setRatingsCount(obj.getCommunityData().getRatings().size());
+		
+		return iRating;
 	}
 
 	@RequestMapping(value = "/social/readReviews/{parentId}", method = RequestMethod.GET)
@@ -212,52 +210,51 @@ public class ObjectController extends AbstractObjectController {
 	}
 
 	@RequestMapping(value = "/social/review/{parentId}", method = RequestMethod.POST)
-	public void review(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> pars, @PathVariable String parentId) {
+	public @ResponseBody CommunityData review(HttpServletRequest request, HttpServletResponse response, @RequestBody Review review, @PathVariable String parentId) {
 		String userId = null;
+		BasicProfile bp = null;
 		try {
 			try {
-				userId = getUserId();
+				bp = getUser();
+				userId = bp.getUserId();
 			} catch (SecurityException e) {
 				logger.error("Failed to review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
+				return null;
 			}
 
 			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(parentId);
-
-			if (obj instanceof InfoObject) {
-				logger.error("Cannot review InfoObject with id " + parentId + " as user " + userId);
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}
+			Integer rating = updateRating(userId, obj, review.getRating());
+			review.setRating(rating);
+			review.setUserId(userId);
+			review.setAuthor(createAuthor(bp));
+			review.setDate(System.currentTimeMillis());
 
 			ReviewObject reviews = reviewStorage.getObjectById(parentId);
 
 			if (reviews == null) {
 				reviews = new ReviewObject(parentId);
-			} else {
-				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-				return;
 			}
 
-			String reviewString = (String) pars.get("review");
-			Review review = null;
+			int pos = -1, i = 0;
+			
 			for (Review oldReview : reviews.getReviews()) {
 				if (userId.equals(oldReview.getUserId())) {
-					review = oldReview;
+					pos = i;
 					break;
 				}
+				i++;
 			}
-
-			if (review != null) {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
+			if (pos < 0) {
+				reviews.getReviews().add(review);
+			} else {
+				reviews.getReviews().set(pos, review);
 			}
-
-			review = new Review(userId, reviewString);
-			reviews.getReviews().add(review);
-
 			reviewStorage.storeObject(reviews);
+			syncStorage.storeObject(obj);
+			obj.filterUserData(userId);
+			return obj.getCommunityData();
+			
 		} catch (NotFoundException e) {
 			logger.error("Failed to review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -266,104 +263,112 @@ public class ObjectController extends AbstractObjectController {
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
+		return null;
 	}
 
-	@RequestMapping(value = "/social/review/{parentId}", method = RequestMethod.PUT)
-	public void updateReview(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> pars, @PathVariable String parentId) {
-		String userId = null;
-		try {
-			try {
-				userId = getUserId();
-			} catch (SecurityException e) {
-				logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}			
-			
-			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(parentId);
-
-			if (obj instanceof InfoObject) {
-				logger.error("Cannot review InfoObject with id " + parentId + " as user " + userId);
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}
-
-			ReviewObject reviews = reviewStorage.getObjectById(parentId);
-
-			String reviewString = (String) pars.get("review");
-			Review review = null;
-			for (Review oldReview : reviews.getReviews()) {
-				if (userId.equals(oldReview.getUserId())) {
-					review = oldReview;
-					break;
-				}
-			}
-
-			if (review == null) {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}
-
-			review.setComment(reviewString);
-
-			reviewStorage.storeObject(reviews);
-		} catch (NotFoundException e) {
-			logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		} catch (Exception e) {
-			logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-			e.printStackTrace();
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		}
-
+	private String createAuthor(BasicProfile bp) {
+		if (bp.getName() != null && bp.getSurname() != null) return bp.getName()+" "+bp.getSurname();
+		if (bp.getName() != null) return bp.getName();
+		if (bp.getSurname() != null) return bp.getSurname();
+		return "";
 	}
 
-	@RequestMapping(value = "/social/review/{parentId}", method = RequestMethod.DELETE)
-	public void deleteReview(HttpServletRequest request, HttpServletResponse response, @PathVariable String parentId) {
-		String userId = null;
-		try {
-			try {
-				userId = getUserId();
-			} catch (SecurityException e) {
-				logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}			
-			
-			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(parentId);
-
-			if (obj instanceof InfoObject) {
-				logger.error("Cannot delete review for InfoObject with id " + parentId + " as user " + userId);
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
-			}
-
-			ReviewObject reviews = reviewStorage.getObjectById(parentId);
-
-			Review review = null;
-			for (Review oldReview : reviews.getReviews()) {
-				if (userId.equals(oldReview.getUserId())) {
-					review = oldReview;
-					break;
-				}
-			}
-
-			if (review != null) {
-				reviews.getReviews().remove(review);
-				reviewStorage.storeObject(reviews);
-				response.setStatus(HttpStatus.OK.value());
-			} else {
-				response.setStatus(HttpStatus.METHOD_FAILURE.value());
-			}
-
-		} catch (NotFoundException e) {
-			logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-			response.setStatus(HttpStatus.METHOD_FAILURE.value());
-		} catch (Exception e) {
-			logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
-			e.printStackTrace();
-			response.setStatus(HttpStatus.METHOD_FAILURE.value());
-		}
-	}
-
+//	@RequestMapping(value = "/social/review/{parentId}", method = RequestMethod.PUT)
+//	public void updateReview(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> pars, @PathVariable String parentId) {
+//		String userId = null;
+//		try {
+//			try {
+//				userId = getUserId();
+//			} catch (SecurityException e) {
+//				logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				return;
+//			}			
+//			
+//			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(parentId);
+//
+//			if (obj instanceof InfoObject) {
+//				logger.error("Cannot review InfoObject with id " + parentId + " as user " + userId);
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				return;
+//			}
+//
+//			ReviewObject reviews = reviewStorage.getObjectById(parentId);
+//
+//			String reviewString = (String) pars.get("review");
+//			Review review = null;
+//			for (Review oldReview : reviews.getReviews()) {
+//				if (userId.equals(oldReview.getUserId())) {
+//					review = oldReview;
+//					break;
+//				}
+//			}
+//
+//			if (review == null) {
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				return;
+//			}
+//
+//			review.setComment(reviewString);
+//
+//			reviewStorage.storeObject(reviews);
+//		} catch (NotFoundException e) {
+//			logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//		} catch (Exception e) {
+//			logger.error("Failed to update review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//			e.printStackTrace();
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//		}
+//
+//	}
+//
+//	@RequestMapping(value = "/social/review/{parentId}", method = RequestMethod.DELETE)
+//	public void deleteReview(HttpServletRequest request, HttpServletResponse response, @PathVariable String parentId) {
+//		String userId = null;
+//		try {
+//			try {
+//				userId = getUserId();
+//			} catch (SecurityException e) {
+//				logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				return;
+//			}			
+//			
+//			BaseDTObject obj = (BaseDTObject) syncStorage.getObjectById(parentId);
+//
+//			if (obj instanceof InfoObject) {
+//				logger.error("Cannot delete review for InfoObject with id " + parentId + " as user " + userId);
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				return;
+//			}
+//
+//			ReviewObject reviews = reviewStorage.getObjectById(parentId);
+//
+//			Review review = null;
+//			for (Review oldReview : reviews.getReviews()) {
+//				if (userId.equals(oldReview.getUserId())) {
+//					review = oldReview;
+//					break;
+//				}
+//			}
+//
+//			if (review != null) {
+//				reviews.getReviews().remove(review);
+//				reviewStorage.storeObject(reviews);
+//				response.setStatus(HttpStatus.OK.value());
+//			} else {
+//				response.setStatus(HttpStatus.METHOD_FAILURE.value());
+//			}
+//
+//		} catch (NotFoundException e) {
+//			logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//			response.setStatus(HttpStatus.METHOD_FAILURE.value());
+//		} catch (Exception e) {
+//			logger.error("Failed to delete review object with id " + parentId + " as user " + userId + ": " + e.getMessage());
+//			e.printStackTrace();
+//			response.setStatus(HttpStatus.METHOD_FAILURE.value());
+//		}
+//	}
+//
 }
