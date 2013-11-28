@@ -30,6 +30,10 @@ public final class Trentinotrack {
     // optional string polyline = 5;
     boolean hasPolyline();
     String getPolyline();
+    
+    // optional string link = 6;
+    boolean hasLink();
+    String getLink();
   }
   public static final class BikeTrack extends
       com.google.protobuf.GeneratedMessage
@@ -220,12 +224,45 @@ public final class Trentinotrack {
       }
     }
     
+    // optional string link = 6;
+    public static final int LINK_FIELD_NUMBER = 6;
+    private java.lang.Object link_;
+    public boolean hasLink() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getLink() {
+      java.lang.Object ref = link_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          link_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getLinkBytes() {
+      java.lang.Object ref = link_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        link_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       id_ = "";
       about_ = "";
       label_ = "";
       length_ = "";
       polyline_ = "";
+      link_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -262,6 +299,9 @@ public final class Trentinotrack {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getPolylineBytes());
       }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getLinkBytes());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -290,6 +330,10 @@ public final class Trentinotrack {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, getPolylineBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getLinkBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -425,6 +469,8 @@ public final class Trentinotrack {
         bitField0_ = (bitField0_ & ~0x00000008);
         polyline_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        link_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -483,6 +529,10 @@ public final class Trentinotrack {
           to_bitField0_ |= 0x00000010;
         }
         result.polyline_ = polyline_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.link_ = link_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -513,6 +563,9 @@ public final class Trentinotrack {
         }
         if (other.hasPolyline()) {
           setPolyline(other.getPolyline());
+        }
+        if (other.hasLink()) {
+          setLink(other.getLink());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -576,6 +629,11 @@ public final class Trentinotrack {
             case 42: {
               bitField0_ |= 0x00000010;
               polyline_ = input.readBytes();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              link_ = input.readBytes();
               break;
             }
           }
@@ -761,6 +819,42 @@ public final class Trentinotrack {
       void setPolyline(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000010;
         polyline_ = value;
+        onChanged();
+      }
+      
+      // optional string link = 6;
+      private java.lang.Object link_ = "";
+      public boolean hasLink() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getLink() {
+        java.lang.Object ref = link_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          link_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setLink(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        link_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLink() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        link_ = getDefaultInstance().getLink();
+        onChanged();
+        return this;
+      }
+      void setLink(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        link_ = value;
         onChanged();
       }
       
@@ -2300,6 +2394,1443 @@ public final class Trentinotrack {
     // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.ResourceDescr)
   }
   
+  public interface CampiglioMainPageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioDataPage pages = 1;
+    java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> 
+        getPagesList();
+    eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage getPages(int index);
+    int getPagesCount();
+    java.util.List<? extends eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder> 
+        getPagesOrBuilderList();
+    eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder getPagesOrBuilder(
+        int index);
+  }
+  public static final class CampiglioMainPage extends
+      com.google.protobuf.GeneratedMessage
+      implements CampiglioMainPageOrBuilder {
+    // Use CampiglioMainPage.newBuilder() to construct.
+    private CampiglioMainPage(Builder builder) {
+      super(builder);
+    }
+    private CampiglioMainPage(boolean noInit) {}
+    
+    private static final CampiglioMainPage defaultInstance;
+    public static CampiglioMainPage getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CampiglioMainPage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_fieldAccessorTable;
+    }
+    
+    // repeated .eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioDataPage pages = 1;
+    public static final int PAGES_FIELD_NUMBER = 1;
+    private java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> pages_;
+    public java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> getPagesList() {
+      return pages_;
+    }
+    public java.util.List<? extends eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder> 
+        getPagesOrBuilderList() {
+      return pages_;
+    }
+    public int getPagesCount() {
+      return pages_.size();
+    }
+    public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage getPages(int index) {
+      return pages_.get(index);
+    }
+    public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder getPagesOrBuilder(
+        int index) {
+      return pages_.get(index);
+    }
+    
+    private void initFields() {
+      pages_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      for (int i = 0; i < getPagesCount(); i++) {
+        if (!getPages(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < pages_.size(); i++) {
+        output.writeMessage(1, pages_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < pages_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, pages_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_fieldAccessorTable;
+      }
+      
+      // Construct using eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getPagesFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (pagesBuilder_ == null) {
+          pages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          pagesBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.getDescriptor();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage getDefaultInstanceForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.getDefaultInstance();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage build() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage buildPartial() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage result = new eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage(this);
+        int from_bitField0_ = bitField0_;
+        if (pagesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            pages_ = java.util.Collections.unmodifiableList(pages_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.pages_ = pages_;
+        } else {
+          result.pages_ = pagesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage) {
+          return mergeFrom((eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage other) {
+        if (other == eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.getDefaultInstance()) return this;
+        if (pagesBuilder_ == null) {
+          if (!other.pages_.isEmpty()) {
+            if (pages_.isEmpty()) {
+              pages_ = other.pages_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensurePagesIsMutable();
+              pages_.addAll(other.pages_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.pages_.isEmpty()) {
+            if (pagesBuilder_.isEmpty()) {
+              pagesBuilder_.dispose();
+              pagesBuilder_ = null;
+              pages_ = other.pages_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              pagesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getPagesFieldBuilder() : null;
+            } else {
+              pagesBuilder_.addAllMessages(other.pages_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        for (int i = 0; i < getPagesCount(); i++) {
+          if (!getPages(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder subBuilder = eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addPages(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioDataPage pages = 1;
+      private java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> pages_ =
+        java.util.Collections.emptyList();
+      private void ensurePagesIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          pages_ = new java.util.ArrayList<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage>(pages_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder> pagesBuilder_;
+      
+      public java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> getPagesList() {
+        if (pagesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(pages_);
+        } else {
+          return pagesBuilder_.getMessageList();
+        }
+      }
+      public int getPagesCount() {
+        if (pagesBuilder_ == null) {
+          return pages_.size();
+        } else {
+          return pagesBuilder_.getCount();
+        }
+      }
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage getPages(int index) {
+        if (pagesBuilder_ == null) {
+          return pages_.get(index);
+        } else {
+          return pagesBuilder_.getMessage(index);
+        }
+      }
+      public Builder setPages(
+          int index, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage value) {
+        if (pagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePagesIsMutable();
+          pages_.set(index, value);
+          onChanged();
+        } else {
+          pagesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setPages(
+          int index, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder builderForValue) {
+        if (pagesBuilder_ == null) {
+          ensurePagesIsMutable();
+          pages_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          pagesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addPages(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage value) {
+        if (pagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePagesIsMutable();
+          pages_.add(value);
+          onChanged();
+        } else {
+          pagesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addPages(
+          int index, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage value) {
+        if (pagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePagesIsMutable();
+          pages_.add(index, value);
+          onChanged();
+        } else {
+          pagesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addPages(
+          eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder builderForValue) {
+        if (pagesBuilder_ == null) {
+          ensurePagesIsMutable();
+          pages_.add(builderForValue.build());
+          onChanged();
+        } else {
+          pagesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addPages(
+          int index, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder builderForValue) {
+        if (pagesBuilder_ == null) {
+          ensurePagesIsMutable();
+          pages_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          pagesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllPages(
+          java.lang.Iterable<? extends eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage> values) {
+        if (pagesBuilder_ == null) {
+          ensurePagesIsMutable();
+          super.addAll(values, pages_);
+          onChanged();
+        } else {
+          pagesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearPages() {
+        if (pagesBuilder_ == null) {
+          pages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          pagesBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removePages(int index) {
+        if (pagesBuilder_ == null) {
+          ensurePagesIsMutable();
+          pages_.remove(index);
+          onChanged();
+        } else {
+          pagesBuilder_.remove(index);
+        }
+        return this;
+      }
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder getPagesBuilder(
+          int index) {
+        return getPagesFieldBuilder().getBuilder(index);
+      }
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder getPagesOrBuilder(
+          int index) {
+        if (pagesBuilder_ == null) {
+          return pages_.get(index);  } else {
+          return pagesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder> 
+           getPagesOrBuilderList() {
+        if (pagesBuilder_ != null) {
+          return pagesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(pages_);
+        }
+      }
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder addPagesBuilder() {
+        return getPagesFieldBuilder().addBuilder(
+            eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.getDefaultInstance());
+      }
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder addPagesBuilder(
+          int index) {
+        return getPagesFieldBuilder().addBuilder(
+            index, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.getDefaultInstance());
+      }
+      public java.util.List<eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder> 
+           getPagesBuilderList() {
+        return getPagesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder> 
+          getPagesFieldBuilder() {
+        if (pagesBuilder_ == null) {
+          pagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder, eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder>(
+                  pages_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          pages_ = null;
+        }
+        return pagesBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioMainPage)
+    }
+    
+    static {
+      defaultInstance = new CampiglioMainPage(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioMainPage)
+  }
+  
+  public interface CampiglioDataPageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string title = 1;
+    boolean hasTitle();
+    String getTitle();
+    
+    // required string link = 2;
+    boolean hasLink();
+    String getLink();
+  }
+  public static final class CampiglioDataPage extends
+      com.google.protobuf.GeneratedMessage
+      implements CampiglioDataPageOrBuilder {
+    // Use CampiglioDataPage.newBuilder() to construct.
+    private CampiglioDataPage(Builder builder) {
+      super(builder);
+    }
+    private CampiglioDataPage(boolean noInit) {}
+    
+    private static final CampiglioDataPage defaultInstance;
+    public static CampiglioDataPage getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CampiglioDataPage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string title = 1;
+    public static final int TITLE_FIELD_NUMBER = 1;
+    private java.lang.Object title_;
+    public boolean hasTitle() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          title_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTitleBytes() {
+      java.lang.Object ref = title_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        title_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string link = 2;
+    public static final int LINK_FIELD_NUMBER = 2;
+    private java.lang.Object link_;
+    public boolean hasLink() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getLink() {
+      java.lang.Object ref = link_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          link_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getLinkBytes() {
+      java.lang.Object ref = link_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        link_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      title_ = "";
+      link_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasTitle()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLink()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTitleBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getLinkBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTitleBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getLinkBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_fieldAccessorTable;
+      }
+      
+      // Construct using eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        title_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        link_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.getDescriptor();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage getDefaultInstanceForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.getDefaultInstance();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage build() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage buildPartial() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage result = new eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.title_ = title_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.link_ = link_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage) {
+          return mergeFrom((eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage other) {
+        if (other == eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.getDefaultInstance()) return this;
+        if (other.hasTitle()) {
+          setTitle(other.getTitle());
+        }
+        if (other.hasLink()) {
+          setLink(other.getLink());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasTitle()) {
+          
+          return false;
+        }
+        if (!hasLink()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              title_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              link_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string title = 1;
+      private java.lang.Object title_ = "";
+      public boolean hasTitle() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getTitle() {
+        java.lang.Object ref = title_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          title_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setTitle(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        title_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTitle() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        title_ = getDefaultInstance().getTitle();
+        onChanged();
+        return this;
+      }
+      void setTitle(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        title_ = value;
+        onChanged();
+      }
+      
+      // required string link = 2;
+      private java.lang.Object link_ = "";
+      public boolean hasLink() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getLink() {
+        java.lang.Object ref = link_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          link_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setLink(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        link_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLink() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        link_ = getDefaultInstance().getLink();
+        onChanged();
+        return this;
+      }
+      void setLink(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        link_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioDataPage)
+    }
+    
+    static {
+      defaultInstance = new CampiglioDataPage(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioDataPage)
+  }
+  
+  public interface CampiglioParagraphsOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated string paragraph = 1;
+    java.util.List<String> getParagraphList();
+    int getParagraphCount();
+    String getParagraph(int index);
+  }
+  public static final class CampiglioParagraphs extends
+      com.google.protobuf.GeneratedMessage
+      implements CampiglioParagraphsOrBuilder {
+    // Use CampiglioParagraphs.newBuilder() to construct.
+    private CampiglioParagraphs(Builder builder) {
+      super(builder);
+    }
+    private CampiglioParagraphs(boolean noInit) {}
+    
+    private static final CampiglioParagraphs defaultInstance;
+    public static CampiglioParagraphs getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public CampiglioParagraphs getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_fieldAccessorTable;
+    }
+    
+    // repeated string paragraph = 1;
+    public static final int PARAGRAPH_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList paragraph_;
+    public java.util.List<String>
+        getParagraphList() {
+      return paragraph_;
+    }
+    public int getParagraphCount() {
+      return paragraph_.size();
+    }
+    public String getParagraph(int index) {
+      return paragraph_.get(index);
+    }
+    
+    private void initFields() {
+      paragraph_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < paragraph_.size(); i++) {
+        output.writeBytes(1, paragraph_.getByteString(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < paragraph_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(paragraph_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getParagraphList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_fieldAccessorTable;
+      }
+      
+      // Construct using eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        paragraph_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.getDescriptor();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs getDefaultInstanceForType() {
+        return eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.getDefaultInstance();
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs build() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs buildPartial() {
+        eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs result = new eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          paragraph_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              paragraph_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.paragraph_ = paragraph_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs) {
+          return mergeFrom((eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs other) {
+        if (other == eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.getDefaultInstance()) return this;
+        if (!other.paragraph_.isEmpty()) {
+          if (paragraph_.isEmpty()) {
+            paragraph_ = other.paragraph_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureParagraphIsMutable();
+            paragraph_.addAll(other.paragraph_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              ensureParagraphIsMutable();
+              paragraph_.add(input.readBytes());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated string paragraph = 1;
+      private com.google.protobuf.LazyStringList paragraph_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureParagraphIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          paragraph_ = new com.google.protobuf.LazyStringArrayList(paragraph_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      public java.util.List<String>
+          getParagraphList() {
+        return java.util.Collections.unmodifiableList(paragraph_);
+      }
+      public int getParagraphCount() {
+        return paragraph_.size();
+      }
+      public String getParagraph(int index) {
+        return paragraph_.get(index);
+      }
+      public Builder setParagraph(
+          int index, String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureParagraphIsMutable();
+        paragraph_.set(index, value);
+        onChanged();
+        return this;
+      }
+      public Builder addParagraph(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureParagraphIsMutable();
+        paragraph_.add(value);
+        onChanged();
+        return this;
+      }
+      public Builder addAllParagraph(
+          java.lang.Iterable<String> values) {
+        ensureParagraphIsMutable();
+        super.addAll(values, paragraph_);
+        onChanged();
+        return this;
+      }
+      public Builder clearParagraph() {
+        paragraph_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      void addParagraph(com.google.protobuf.ByteString value) {
+        ensureParagraphIsMutable();
+        paragraph_.add(value);
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioParagraphs)
+    }
+    
+    static {
+      defaultInstance = new CampiglioParagraphs(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:eu.trentorise.smartcampus.service.trentinotrack.data.message.CampiglioParagraphs)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_BikeTrack_descriptor;
   private static
@@ -2320,6 +3851,21 @@ public final class Trentinotrack {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_ResourceDescr_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2331,14 +3877,20 @@ public final class Trentinotrack {
     java.lang.String[] descriptorData = {
       "\n\023trentinotrack.proto\022<eu.trentorise.sma" +
       "rtcampus.service.trentinotrack.data.mess" +
-      "age\"W\n\tBikeTrack\022\n\n\002id\030\001 \002(\t\022\r\n\005about\030\002 " +
+      "age\"e\n\tBikeTrack\022\n\n\002id\030\001 \002(\t\022\r\n\005about\030\002 " +
       "\002(\t\022\r\n\005label\030\003 \001(\t\022\016\n\006length\030\004 \001(\t\022\020\n\010po" +
-      "lyline\030\005 \001(\t\"4\n\024OpenDataResourcePage\022\014\n\004" +
-      "link\030\001 \002(\t\022\016\n\006format\030\002 \002(\t\"z\n\025OpenDataRe" +
-      "sourcePages\022a\n\005pages\030\001 \003(\0132R.eu.trentori" +
-      "se.smartcampus.service.trentinotrack.dat" +
-      "a.message.OpenDataResourcePage\".\n\rResour" +
-      "ceDescr\022\014\n\004link\030\001 \002(\t\022\017\n\007extPage\030\002 \001(\t"
+      "lyline\030\005 \001(\t\022\014\n\004link\030\006 \001(\t\"4\n\024OpenDataRe" +
+      "sourcePage\022\014\n\004link\030\001 \002(\t\022\016\n\006format\030\002 \002(\t" +
+      "\"z\n\025OpenDataResourcePages\022a\n\005pages\030\001 \003(\013" +
+      "2R.eu.trentorise.smartcampus.service.tre" +
+      "ntinotrack.data.message.OpenDataResource" +
+      "Page\".\n\rResourceDescr\022\014\n\004link\030\001 \002(\t\022\017\n\007e",
+      "xtPage\030\002 \001(\t\"s\n\021CampiglioMainPage\022^\n\005pag" +
+      "es\030\001 \003(\0132O.eu.trentorise.smartcampus.ser" +
+      "vice.trentinotrack.data.message.Campigli" +
+      "oDataPage\"0\n\021CampiglioDataPage\022\r\n\005title\030" +
+      "\001 \002(\t\022\014\n\004link\030\002 \002(\t\"(\n\023CampiglioParagrap" +
+      "hs\022\021\n\tparagraph\030\001 \003(\t"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2350,7 +3902,7 @@ public final class Trentinotrack {
           internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_BikeTrack_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_BikeTrack_descriptor,
-              new java.lang.String[] { "Id", "About", "Label", "Length", "Polyline", },
+              new java.lang.String[] { "Id", "About", "Label", "Length", "Polyline", "Link", },
               eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.BikeTrack.class,
               eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.BikeTrack.Builder.class);
           internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_OpenDataResourcePage_descriptor =
@@ -2377,6 +3929,30 @@ public final class Trentinotrack {
               new java.lang.String[] { "Link", "ExtPage", },
               eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.ResourceDescr.class,
               eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.ResourceDescr.Builder.class);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioMainPage_descriptor,
+              new java.lang.String[] { "Pages", },
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.class,
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioMainPage.Builder.class);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioDataPage_descriptor,
+              new java.lang.String[] { "Title", "Link", },
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.class,
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioDataPage.Builder.class);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_eu_trentorise_smartcampus_service_trentinotrack_data_message_CampiglioParagraphs_descriptor,
+              new java.lang.String[] { "Paragraph", },
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.class,
+              eu.trentorise.smartcampus.service.trentinotrack.data.message.Trentinotrack.CampiglioParagraphs.Builder.class);
           return null;
         }
       };
