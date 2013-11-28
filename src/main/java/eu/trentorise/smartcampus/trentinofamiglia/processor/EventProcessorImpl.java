@@ -443,6 +443,9 @@ public class EventProcessorImpl implements ServiceBusListener {
 			cd.put("length", bt.getLength());
 			cd.put("label", bt.getLabel());
 			cd.put("about", bt.getAbout());
+			if (bt.hasLink()) {
+				cd.put("link", bt.getLink());
+			}
 
 			tObj.setCustomData(cd);
 
