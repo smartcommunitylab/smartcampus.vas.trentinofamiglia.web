@@ -53,7 +53,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			private static final String DOSSIER = "Politiche provinciali";
 			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 	
-			private static final String CONSULENTE_AUDIT = "Certificatori \"Audit\"";
+			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
 			private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
 	
 	
