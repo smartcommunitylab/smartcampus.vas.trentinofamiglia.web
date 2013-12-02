@@ -37,20 +37,19 @@ public class Subscriber {
 	public static final String GET_BIKE_TRACKS = "GetBikeTracks";
 	public static final String GET_WALKBIKE_TRACKS = "GetWalkBikeTracks";
 	public static final String GET_WALK_TRACKS = "GetWalkTracks";
-	
+
 	public static final String GET_DISTRETTI = "GetDistretti";
 	public static final String GET_PROGRAMMI = "GetProgrammi";
-	
+
 	public static final String GET_EVENTI_GARDA = "GetEventiGarda";
-	
+
 	public static final String GET_FAMILY_TRENTINO = "GetFamilyTrentino";
-	
-	
+
 	public static final String TRENTINOFAMIGLIA = "smartcampus.service.trentinofamiglia";
 	public static final String TRACKS = "smartcampus.service.trentinotrack";
-	
+
 	private Log logger = LogFactory.getLog(getClass());
-	
+
 	public Subscriber(ServiceBusClient client) {
 		try {
 			System.out.println("SUBSCRIBE");
@@ -63,15 +62,21 @@ public class Subscriber {
 			client.subscribeService(TRENTINOFAMIGLIA, GET_PERSONE_AUDIT, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_NEW_MEDIA, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_ALLATTAMENTO, params);
-//			client.subscribeService(TRACKS, GET_BIKE_TRACKS, params);
+			// client.subscribeService(TRACKS, GET_BIKE_TRACKS, params);
 			client.subscribeService(TRACKS, GET_WALKBIKE_TRACKS, params);
-			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);			
-			client.subscribeService(TRENTINOFAMIGLIA, GET_DISTRETTI, params);
-			client.subscribeService(TRENTINOFAMIGLIA, GET_PROGRAMMI, params);
+			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_EVENTI_GARDA, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_FAMILY_TRENTINO, params);
+
+			String ids[] = { "16342", "17441", "17442", "17443", "17444", "17445", "17446", "18163", "18167", "18171" };
+			for (String id : ids) {
+				params.put("idDistretto", id);
+				client.subscribeService(TRENTINOFAMIGLIA, GET_DISTRETTI, params);
+				client.subscribeService(TRENTINOFAMIGLIA, GET_PROGRAMMI, params);
+			}
+
 		} catch (InvocationException e) {
-			logger.error("Failed to subscribe for service events: "+e.getMessage());
+			logger.error("Failed to subscribe for service events: " + e.getMessage());
 		}
 	}
 }
