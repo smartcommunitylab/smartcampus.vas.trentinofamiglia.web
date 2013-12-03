@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,32 +52,30 @@ import eu.trentorise.smartcampus.trentinofamiglia.listener.Subscriber;
 
 public class EventProcessorImpl implements ServiceBusListener {
 
-			private static final String DOSSIER = "Politiche provinciali";
-			private static final String ORGANIZZAZIONE = "\"Family Audit\"";
-	
-			private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
-			private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
-	
-	
-			private static final String BIKE_TRACK = "Pista ciclabile";
-	
-			private static final String ATTIVITA_DISTRETTO = "Politiche dei distretti";
-	
-			private static final String EVENTO = "Estate giovani e famiglia";
-			private static final String MANIFESTAZIONE = "Notizie";
-			private static final String STRUTTURA_RICETTIVA = "Vacanze al mare";
+	private static final String DOSSIER = "Politiche provinciali";
+	private static final String ORGANIZZAZIONE = "\"Family Audit\"";
 
-			private static final String NEW_MEDIA = "Tavolo \"Nuovi Media\"";
-			private static final String ALLATTAMENTO = "Punti allattamento";
+	private static final String CONSULENTE_AUDIT = "Consulenti \"Audit\"";
+	private static final String VALUTATORE_AUDIT = "Valutatori \"Audit\"";
 
+	private static final String BIKE_TRACK = "Pista ciclabile";
 
-			private static final String BIKEWALK_TRACK = "Piste ciclopedonali";
-			private static final String WALK_TRACK = "Passeggiate";
+	private static final String ATTIVITA_DISTRETTO = "Politiche dei distretti";
 
-			private static final String ORGANIZZAZIONE_DISTRETTO = "Distretti e organizzazioni";
-	
-			private static final String EVENTO_GARDA = "Alto Garda";
-			private static final String FAMILY_TRENTINO = "\"Family in Trentino\"";
+	private static final String EVENTO = "Estate giovani e famiglia";
+	private static final String MANIFESTAZIONE = "Notizie";
+	private static final String STRUTTURA_RICETTIVA = "Vacanze al mare";
+
+	private static final String NEW_MEDIA = "Tavolo \"Nuovi Media\"";
+	private static final String ALLATTAMENTO = "Punti allattamento";
+
+	private static final String BIKEWALK_TRACK = "Piste ciclopedonali";
+	private static final String WALK_TRACK = "Passeggiate";
+
+	private static final String ORGANIZZAZIONE_DISTRETTO = "Distretti e organizzazioni";
+
+	private static final String EVENTO_GARDA = "Alto Garda";
+	private static final String FAMILY_TRENTINO = "\"Family in Trentino\"";
 
 	@Autowired
 	private BasicObjectSyncStorage storage;
@@ -122,8 +122,6 @@ public class EventProcessorImpl implements ServiceBusListener {
 					updateFamilyTrentino(data);
 				}
 
-				
-				
 			}
 
 		} catch (Exception e) {
@@ -307,15 +305,15 @@ public class EventProcessorImpl implements ServiceBusListener {
 			poiObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
 			double loc[] = new double[] { sr.getLat(), sr.getLon() };
-			poiObj.setLocation(loc);					
-			
+			poiObj.setLocation(loc);
+
 			POIData poiData = new POIData();
 			poiData.setCity(sr.getTown());
 			poiData.setRegion(sr.getRegion());
 			poiData.setLatitude(sr.getLat());
 			poiData.setLongitude(sr.getLon());
 			poiObj.setPoi(poiData);
-			
+
 			poiObj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
@@ -365,7 +363,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			cd.put("name", pa.getName());
 			cd.put("email", pa.getEmail());
 			cd.put("date", pa.getDate());
-//			cd.put("type", pa.getType());
+			// cd.put("type", pa.getType());
 			dtobj.setCustomData(cd);
 
 			if (!dtobj.equals(oldDtobj)) {
@@ -392,14 +390,14 @@ public class EventProcessorImpl implements ServiceBusListener {
 			poiObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
 			double loc[] = new double[] { dnm.getLat(), dnm.getLon() };
-			poiObj.setLocation(loc);								
-			
+			poiObj.setLocation(loc);
+
 			POIData poiData = new POIData();
 			poiData.setStreet(dnm.getAddress());
 			poiData.setLatitude(dnm.getLat());
-			poiData.setLongitude(dnm.getLon());			
+			poiData.setLongitude(dnm.getLon());
 			poiObj.setPoi(poiData);
-			
+
 			poiObj.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
@@ -474,17 +472,16 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 			poiObj.setTitle(da.getName());
 			poiObj.setDescription("");
-			
+
 			double loc[] = new double[] { da.getLat(), da.getLon() };
-			poiObj.setLocation(loc);		
-			
+			poiObj.setLocation(loc);
+
 			POIData poiData = new POIData();
-			poiData.setStreet(da.getAddress() + (da.hasArea()?(" - " + da.getArea()):""));
+			poiData.setStreet(da.getAddress() + (da.hasArea() ? (" - " + da.getArea()) : ""));
 			poiData.setCity(da.getTown());
 			poiData.setLatitude(da.getLat());
-			poiData.setLongitude(da.getLon());			
-			poiObj.setPoi(poiData);			
-			
+			poiData.setLongitude(da.getLon());
+			poiObj.setPoi(poiData);
 
 			poiObj.setId(id);
 			//
@@ -503,78 +500,76 @@ public class EventProcessorImpl implements ServiceBusListener {
 	public void updateDistretti(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (ByteString bs : bsl) {
 			DatiOrganizzazioniDistretto dod = DatiOrganizzazioniDistretto.parseFrom(bs);
-//			String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getId());
-//
-//			InfoObject oldDtobj = null;
-//			try {
-//				oldDtobj = (InfoObject) storage.getObjectById(id);
-//			} catch (NotFoundException e) {}
-//			InfoObject tObj = new InfoObject();
-//
-//			tObj.setType(DISTRETTO);
-//			tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
-//
-//			tObj.setTitle(dod.getTitle());
-//			tObj.setDescription(dod.getDescription());
-//
-//			tObj.setId(id);
-//
-//			Map<String, Object> cd = new TreeMap<String, Object>();
-//			cd.put("alias", dod.getAlias());
-//
-//			tObj.setCustomData(cd);
-//			
-//			if (!tObj.equals(oldDtobj)) {
-//				storage.storeObject(tObj);
-//				System.out.println("CHANGED " + id);
-//			}
-			
+			// String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getId());
+			//
+			// InfoObject oldDtobj = null;
+			// try {
+			// oldDtobj = (InfoObject) storage.getObjectById(id);
+			// } catch (NotFoundException e) {}
+			// InfoObject tObj = new InfoObject();
+			//
+			// tObj.setType(DISTRETTO);
+			// tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+			//
+			// tObj.setTitle(dod.getTitle());
+			// tObj.setDescription(dod.getDescription());
+			//
+			// tObj.setId(id);
+			//
+			// Map<String, Object> cd = new TreeMap<String, Object>();
+			// cd.put("alias", dod.getAlias());
+			//
+			// tObj.setCustomData(cd);
+			//
+			// if (!tObj.equals(oldDtobj)) {
+			// storage.storeObject(tObj);
+			// System.out.println("CHANGED " + id);
+			// }
+
 			updateOrganizzazioniDistretto(dod);
-			
+
 		}
 
 	}
-	
+
 	private void updateOrganizzazioniDistretto(DatiOrganizzazioniDistretto dod) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (OrganizzazioneAderente oa : dod.getOrganizzazioniList()) {
-					String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getTitle() + "_" + oa.getName());
+			String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getTitle() + "_" + oa.getName());
 
-					InfoObject oldDtobj = null;
-					try {
-						oldDtobj = (InfoObject) storage.getObjectById(id);
-					} catch (NotFoundException e) {}
-					InfoObject iObj = new InfoObject();
+			InfoObject oldDtobj = null;
+			try {
+				oldDtobj = (InfoObject) storage.getObjectById(id);
+			} catch (NotFoundException e) {}
+			InfoObject iObj = new InfoObject();
 
-					iObj.setType(ORGANIZZAZIONE_DISTRETTO);
-					iObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+			iObj.setType(ORGANIZZAZIONE_DISTRETTO);
+			iObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-					iObj.setTitle(oa.getName());
-					iObj.setDescription(oa.getDescription());
-					double loc[] = new double[] { oa.getLat(), oa.getLon() };
-					iObj.setLocation(loc);					
+			iObj.setTitle(oa.getName());
+			iObj.setDescription(oa.getDescription());
+			double loc[] = new double[] { oa.getLat(), oa.getLon() };
+			iObj.setLocation(loc);
 
-					iObj.setId(id);
+			iObj.setId(id);
 
-					Map<String, Object> map = new TreeMap<String, Object>();
-					map.put("alias", oa.getAlias());
-					map.put("address", oa.getAddress());
-					map.put("phone", oa.getPhone());
-					map.put("fax", oa.getFax());
-					map.put("email", oa.getEmail());
-					map.put("link", oa.getLink());
-					map.put("logo", oa.getLogo());
-					map.put("district", dod.getTitle());
+			Map<String, Object> map = new TreeMap<String, Object>();
+			map.put("alias", oa.getAlias());
+			map.put("address", oa.getAddress());
+			map.put("phone", oa.getPhone());
+			map.put("fax", oa.getFax());
+			map.put("email", oa.getEmail());
+			map.put("link", oa.getLink());
+			map.put("logo", oa.getLogo());
+			map.put("district", dod.getTitle());
 
-					iObj.setCustomData(map);
-					
-					if (!iObj.equals(oldDtobj)) {
-						storage.storeObject(iObj);
-						System.out.println("CHANGED " + id);
-					}					
-				}
+			iObj.setCustomData(map);
+
+			if (!iObj.equals(oldDtobj)) {
+				storage.storeObject(iObj);
+				System.out.println("CHANGED " + id);
 			}
-
-	
+		}
+	}
 
 	public void updateProgrammi(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (ByteString bs : bsl) {
@@ -585,54 +580,121 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	private void updateAttivita(DatiProgrammiDistretto dpd) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
+		String keepYear = null;
+		SortedSet<String> dataYears = new TreeSet<String>();
 		for (DatiProgramma dp : dpd.getProgrammiList()) {
+			dataYears.add(dp.getYear().replaceAll("[^\\p{Digit}]", ""));
+		}
+		if (!dataYears.isEmpty()) {
+			keepYear = dataYears.last();
+		}
+		if (keepYear == null) {
+			return;
+		}
+
+		for (DatiProgramma dp : dpd.getProgrammiList()) {
+			if (!keepYear.equals(dp.getYear().replaceAll("[^\\p{Digit}]", ""))) {
+				continue;
+			}
 			for (DatiAttivita dat : dp.getAttivitaList()) {
-//				for (DatiAzione daz : dat.getAzioniList()) {
-					String id = encode(Subscriber.GET_PROGRAMMI + "_" + dpd.getId() + "_" + dat.getTitle());
+				String id = encode(Subscriber.GET_PROGRAMMI + "_" + dpd.getId() + "_" + dat.getTitle());
 
-					InfoObject oldDtobj = null;
-					try {
-						oldDtobj = (InfoObject) storage.getObjectById(id);
-					} catch (NotFoundException e) {}
-					InfoObject tObj = new InfoObject();
+				InfoObject oldDtobj = null;
+				try {
+					oldDtobj = (InfoObject) storage.getObjectById(id);
+				} catch (NotFoundException e) {}
+				InfoObject tObj = new InfoObject();
 
-					tObj.setType(ATTIVITA_DISTRETTO);
-					tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
+				tObj.setType(ATTIVITA_DISTRETTO);
+				tObj.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-					tObj.setTitle(dat.getTitle());
-					tObj.setDescription("");
+				tObj.setTitle(dat.getTitle());
+				tObj.setDescription("");
 
-					tObj.setId(id);
+				tObj.setId(id);
 
-					Map<String, Object> map = new TreeMap<String, Object>();
-					map.put("contact", dat.getContact());
-					map.put("times", dat.getTimes());
-					map.put("program year", dp.getYear());
-					map.put("program link", dp.getLink());
-					map.put("district name", dpd.getTitle());
-					
-					
-					List<Object> actions = new ArrayList<Object>();
-					for (DatiAzione daz : dat.getAzioniList()) {
-						Map<String, Object> map2 = new TreeMap<String, Object>();
+				Map<String, Object> map = new TreeMap<String, Object>();
+				map.put("contact", dat.getContact());
+				map.put("times", dat.getTimes());
+				map.put("program year", dp.getYear());
+				map.put("program link", dp.getLink());
+				map.put("district name", dpd.getTitle());
+
+				List<Object> actions = new ArrayList<Object>();
+				for (DatiAzione daz : dat.getAzioniList()) {
+					Map<String, Object> map2 = new TreeMap<String, Object>();
 					map2.put("goal", daz.getGoal());
 					map2.put("contact", daz.getContact());
 					map2.put("times", daz.getTimes());
 					map2.put("title", daz.getTitle());
 					actions.add(map2);
-					}
-					map.put("actions", actions);
-					
-					tObj.setCustomData(map);
-					
-					if (!tObj.equals(oldDtobj)) {
-						storage.storeObject(tObj);
-						System.out.println("CHANGED " + id);
-					}					
+				}
+				map.put("actions", actions);
+
+				tObj.setCustomData(map);
+
+				if (!tObj.equals(oldDtobj)) {
+					storage.storeObject(tObj);
+					System.out.println("CHANGED " + id);
 				}
 			}
+		}
+
+		deleteOldPrograms(dpd);
 	}
-	
+
+	private SortedSet<String> deleteOldPrograms(DatiProgrammiDistretto dpd) throws DataException {
+		// SortedSet<String> years = new TreeSet<String>();
+		// for (DatiProgramma dp : dpd.getProgrammiList()) {
+		// years.add(dp.getYear());
+		// }
+		// if (years.size() > 1) {
+		// years.remove(years.last());
+		// }
+
+		SortedSet<String> years = findOldProgrammi(dpd.getTitle());
+
+		List<InfoObject> old = new ArrayList<InfoObject>();
+		Map<String, Object> criteria = new TreeMap<String, Object>();
+		criteria.put("type", ATTIVITA_DISTRETTO);
+		for (String year : years) {
+			criteria.put("customData.program year", year);
+			criteria.put("customData.district name", dpd.getTitle());
+			List<InfoObject> objs = storage.searchObjects(InfoObject.class, criteria);
+			if (objs != null) {
+				old.addAll(objs);
+			}
+		}
+
+		for (InfoObject obj : old) {
+			System.out.println("DELETED " + obj.getId());
+			storage.deleteObject(obj);
+		}
+
+		return years;
+	}
+
+	private SortedSet<String> findOldProgrammi(String title) throws DataException {
+		SortedSet<String> years = new TreeSet<String>();
+
+		List<InfoObject> old = new ArrayList<InfoObject>();
+		Map<String, Object> criteria = new TreeMap<String, Object>();
+		criteria.put("type", ATTIVITA_DISTRETTO);
+		criteria.put("customData.district name", title);
+		List<InfoObject> objs = storage.searchObjects(InfoObject.class, criteria);
+		if (objs != null) {
+			for (InfoObject obj : objs) {
+				years.add(((String) obj.getCustomData().get("program year")).replaceAll("[^\\p{Digit}]", ""));
+			}
+		}
+		
+		if (!years.isEmpty()) {
+			years.remove(years.last());
+		}
+
+		return years;
+	}
+
 	public void updateEventiGarda(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (ByteString bs : bsl) {
 			EventoGarda eg = EventoGarda.parseFrom(bs);
@@ -652,7 +714,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 			eventObject.setId(id);
 
-			double loc[] = new double[] { eg.hasLat()?eg.getLat():0, eg.hasLon()?eg.getLon():0 };
+			double loc[] = new double[] { eg.hasLat() ? eg.getLat() : 0, eg.hasLon() ? eg.getLon() : 0 };
 			eventObject.setLocation(loc);
 
 			eventObject.setFromTime(eg.getFrom());
@@ -675,8 +737,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 			}
 		}
 
-	}	
-	
+	}
+
 	public void updateFamilyTrentino(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (ByteString bs : bsl) {
 			OrganizzazioneFamilyTrentino pa = OrganizzazioneFamilyTrentino.parseFrom(bs);
@@ -693,15 +755,15 @@ public class EventProcessorImpl implements ServiceBusListener {
 			poiObject.setType(FAMILY_TRENTINO);
 			poiObject.setSource(Subscriber.TRENTINOFAMIGLIA);
 
-			double loc[] = new double[] { pa.getLat(), pa.getLon()};
-			poiObject.setLocation(loc);			
-			
+			double loc[] = new double[] { pa.getLat(), pa.getLon() };
+			poiObject.setLocation(loc);
+
 			POIData poiData = new POIData();
 			poiData.setStreet(pa.getAddress());
 			poiData.setLatitude(pa.getLat());
-			poiData.setLongitude(pa.getLon());		
+			poiData.setLongitude(pa.getLon());
 			poiObject.setPoi(poiData);
-			
+
 			poiObject.setId(id);
 
 			Map<String, Object> cd = new TreeMap<String, Object>();
@@ -716,9 +778,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 				System.out.println("CHANGED " + id);
 			}
 		}
-	}	
-	
-	
+	}
+
 	private Long parseDate(String date) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
