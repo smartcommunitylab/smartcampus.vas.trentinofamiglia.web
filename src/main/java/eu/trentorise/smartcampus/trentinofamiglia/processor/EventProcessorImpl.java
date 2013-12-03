@@ -537,7 +537,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 	
 	private void updateOrganizzazioniDistretto(DatiOrganizzazioniDistretto dod) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
 		for (OrganizzazioneAderente oa : dod.getOrganizzazioniList()) {
-					String id = encode(Subscriber.GET_DISTRETTI + "_" + oa.getName());
+					String id = encode(Subscriber.GET_DISTRETTI + "_" + dod.getTitle() + "_" + oa.getName());
 
 					InfoObject oldDtobj = null;
 					try {
