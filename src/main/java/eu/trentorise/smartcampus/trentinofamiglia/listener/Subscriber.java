@@ -44,6 +44,7 @@ public class Subscriber {
 	public static final String GET_EVENTI_GARDA = "GetEventiGarda";
 
 	public static final String GET_FAMILY_TRENTINO = "GetFamilyTrentino";
+	public static final String GET_BABY_LITTLE_HOME = "GetBabyLittleHome";
 
 	public static final String TRENTINOFAMIGLIA = "smartcampus.service.trentinofamiglia";
 	public static final String TRACKS = "smartcampus.service.trentinotrack";
@@ -67,6 +68,7 @@ public class Subscriber {
 			client.subscribeService(TRACKS, GET_WALK_TRACKS, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_EVENTI_GARDA, params);
 			client.subscribeService(TRENTINOFAMIGLIA, GET_FAMILY_TRENTINO, params);
+			client.subscribeService(TRENTINOFAMIGLIA, GET_BABY_LITTLE_HOME, params);
 
 			String ids[] = { "16342", "17441", "17442", "17443", "17444", "17445", "17446", "18163", "18167", "18171" };
 			for (String id : ids) {

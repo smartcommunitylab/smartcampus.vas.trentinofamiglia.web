@@ -33,6 +33,7 @@ import eu.trentorise.smartcampus.presentation.storage.sync.BasicObjectSyncStorag
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiAllattamento;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiAttivita;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiAzione;
+import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiBabyLittleHome;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiManifestazione;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiNewMedia;
 import eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.DatiOrganizzazioniDistretto;
@@ -77,6 +78,10 @@ public class EventProcessorImpl implements ServiceBusListener {
 
 	private static final String EVENTO_GARDA = "Alto Garda";
 	private static final String FAMILY_TRENTINO = "\"Family in Trentino\"";
+	
+	private static final String BABY_LITTLE_HOME = "\"Baby little home\"";
+	
+	
 
 	@Autowired
 	private BasicObjectSyncStorage storage;
@@ -121,6 +126,8 @@ public class EventProcessorImpl implements ServiceBusListener {
 					updateEventiGarda(data);
 				} else if (Subscriber.GET_FAMILY_TRENTINO.equals(methodName)) {
 					updateFamilyTrentino(data);
+				} else if (Subscriber.GET_BABY_LITTLE_HOME.equals(methodName)) {
+					updateBabyLittleHome(data);
 				}
 
 			}
@@ -772,6 +779,44 @@ public class EventProcessorImpl implements ServiceBusListener {
 			}
 		}
 	}
+	
+	public void updateBabyLittleHome(List<ByteString> bsl) throws InvocationException, InvalidProtocolBufferException, NotFoundException, DataException {
+		for (ByteString bs : bsl) {
+			DatiBabyLittleHome pa = DatiBabyLittleHome.parseFrom(bs);
+			String id = encode(Subscriber.GET_BABY_LITTLE_HOME + "_" + pa.getName());
+
+			POIObject oldDtobj = null;
+			try {
+				oldDtobj = (POIObject) storage.getObjectById(id);
+			} catch (NotFoundException e) {}
+
+			POIObject poiObject = new POIObject();
+			poiObject.setDescription("");
+			poiObject.setTitle(pa.getName());
+			poiObject.setType(BABY_LITTLE_HOME);
+			poiObject.setSource(Subscriber.TRENTINOFAMIGLIA);
+
+			double loc[] = new double[] { pa.getLat(), pa.getLon() };
+			poiObject.setLocation(loc);
+
+			POIData poiData = new POIData();
+			poiData.setStreet(pa.getAddress());
+			poiData.setLatitude(pa.getLat());
+			poiData.setLongitude(pa.getLon());
+			poiObject.setPoi(poiData);
+
+			poiObject.setId(id);
+
+			Map<String, Object> cd = new TreeMap<String, Object>();
+			cd.put("place", pa.getPlace());
+			poiObject.setCustomData(cd);
+
+			if (!poiObject.equals(oldDtobj)) {
+				storage.storeObject(poiObject);
+				System.out.println("CHANGED " + id);
+			}
+		}
+	}	
 
 	private Long parseDate(String date) {
 		try {
