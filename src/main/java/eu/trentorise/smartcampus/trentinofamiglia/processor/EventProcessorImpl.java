@@ -791,7 +791,7 @@ public class EventProcessorImpl implements ServiceBusListener {
 			} catch (NotFoundException e) {}
 
 			POIObject poiObject = new POIObject();
-			poiObject.setDescription("");
+			poiObject.setDescription(pa.getDescription());
 			poiObject.setTitle(pa.getName());
 			poiObject.setType(BABY_LITTLE_HOME);
 			poiObject.setSource(Subscriber.TRENTINOFAMIGLIA);
