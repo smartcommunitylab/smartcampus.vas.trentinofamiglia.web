@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -644,21 +645,13 @@ public class EventProcessorImpl implements ServiceBusListener {
 	}
 
 	private SortedSet<String> deleteOldPrograms(DatiProgrammiDistretto dpd) throws DataException {
-		// SortedSet<String> years = new TreeSet<String>();
-		// for (DatiProgramma dp : dpd.getProgrammiList()) {
-		// years.add(dp.getYear());
-		// }
-		// if (years.size() > 1) {
-		// years.remove(years.last());
-		// }
-
 		SortedSet<String> years = findOldProgrammi(dpd.getTitle());
 
 		List<InfoObject> old = new ArrayList<InfoObject>();
 		Map<String, Object> criteria = new TreeMap<String, Object>();
 		criteria.put("type", ATTIVITA_DISTRETTO);
 		for (String year : years) {
-			criteria.put("customData.program year", year);
+			criteria.put("customData.program year", "Anno " + year);
 			criteria.put("customData.district name", dpd.getTitle());
 			List<InfoObject> objs = storage.searchObjects(InfoObject.class, criteria);
 			if (objs != null) {
