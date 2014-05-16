@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="trentinofamiglia">
+
+<head>
+  <title>TrentinoFamiglia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="mainController">
+  <div id="header" class="row">
+    <div class="col-md-11 col-md-offset-1">
+      <h1>TrentinoFamiglia</h1>
+    </div>
+  </div>
+  <div id="page" class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div id="map-container" class="panel panel-default">
+        <div class="panel-body">
+          <div id="map-canvas" ng-controller="mapController"></div>
+        </div>
+      </div>
+      <div id="footer" class="row">
+        <div class="col-md-7">
+          <p>
+            <span>&copy; Smart Campus 2013</span>
+            &middot;
+            <!-- <a href="#about" data-toggle="modal">About</a> -->
+            <a href="http://www.smartcampuslab.it/trentinofamigliaabout/" target="_blank">Informazioni</a>
+          </p>
+          <a href="http://www.smartcampuslab.it/" target="_blank">
+            <img class="smartcampus" src="imgs/smartcampus_logo.png" />
+          </a>
+        </div>
+        <div class="col-md-5">
+          <p>Realizzato in collaborazione con</p>
+          <a href="http://www.trentinofamiglia.it/" target="_blank">
+            <img class="trentinofamiglia" src="imgs/trentinofamiglia.jpg" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" id="categories" ng-controller="categoriesController">
+      <div class="title">
+        <h3>Categorie</h3>
+        <img src="imgs/ajax-loader.gif" class="loader" ng-if="!!loading" />
+        <div class="autozoom">
+          <span>Zoom automatico</span>
+          <input type="checkbox" ng-checked="autoZoom" ng-click="toggleAutoZoom()" /></input>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row" id="categories-list">
+        <div class="col-md-12">
+          <div class="panel panel-default" ng-repeat="category in categories">
+            <div class="panel-heading" data-toggle="collapse" data-target="#category-{{$index}}">
+              <span class="glyphicon glyphicon-chevron-down"></span>{{category.name}}
+            </div>
+            <ul class="list-group collapse" ng-class="{in: $index == 0}" id="category-{{$index}}">
+              <li class="list-group-item" ng-repeat="type in category.types">
+                <input type="checkbox" ng-checked="isActiveType(type.id)" ng-click="toggleActiveType(type)"></input>
+                <span ng-if="! type.image">
+                  <img class="type-icon" ng-src="{{type.icon}}" />
+                  {{type.id}}
+                </span>
+                <span ng-if="!! type.image">
+                  <img class="type-image" ng-src="{{type.image}}" />
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="footer" class="row"></div> -->
+  <!-- </div> -->
+
+  <!-- <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="about-label" aria-hidden="true" ng-include="'./partials/modal_about.html'"></div> -->
+  <!-- /.modal -->
+
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdl0iqtqQ26b4Nhh61tH92AyoLB5o4qII&libraries=geometry&sensor=true"></script> -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmKVWmFzh2JHT7q1MLmQRQ7jC4AhkRBDs&libraries=geometry&sensor=true"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js"></script>
+  <script src="js/vendor/markerclustererplus-2.1.2.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/angular-animate.min.js"></script>
+  <script src="js/vendor/angular-resource.min.js"></script>
+  <script src="js/vendor/angular-sanitize.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/services.js"></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35617863-1']);
+    _gaq.push(['_setDomainName', 'smartcampuslab.it']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+
+</html>

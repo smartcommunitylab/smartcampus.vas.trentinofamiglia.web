@@ -1,0 +1,10 @@
+<h5>{{activeMarker.obj.title}}</h5>
+<div ng-bind-html="activeMarker.obj.description | htmlLinky"></div>
+<ul class="list-unstyled">
+    <li>Categoria: {{activeMarker.obj.customData['category']}}</li>
+    <li ng-switch on="activeMarker.obj.customData['free']">
+        <span ng-switch-when="'NO'">Prezzo: {{activeMarker.obj.customData['price']}}</span>
+        <span ng-switch-default>Prezzo: gratis</span>
+    </li>
+</ul>
+<p ng-if="!! activeMarker.obj.customData['link']" ng-bind-html="activeMarker.obj.customData['link'] | htmlLinky"></p>

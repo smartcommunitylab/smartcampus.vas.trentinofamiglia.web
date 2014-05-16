@@ -1,0 +1,15 @@
+<h5>{{activeMarker.obj.title}}</h5>
+<div ng-bind-html="activeMarker.obj.description | htmlLinky"></div>
+<ul class="list-unstyled">
+    <li>Livello famiglia: {{activeMarker.obj.customData['levelFamily']}}</li>
+    <li>Categoria: {{activeMarker.obj.customData['stars']}} stelle</li>
+</ul>
+<p ng-bind-html="activeMarker.obj.customData['guide'] | htmlLinky"></p>
+<p>{{activeMarker.obj.customData['bookingHow']}}</p>
+<ul class="list-unstyled">
+    <li>{{activeMarker.obj.customData['bookingWhere']}}</li>
+    <li>{{activeMarker.obj.customData['bookingAddress']}}, {{activeMarker.obj.customData['bookingZipCode']}}, {{activeMarker.obj.customData['bookingTown']}}</li>
+    <li ng-bind-html="'http://' + activeMarker.obj.customData['bookingLink'] | htmlLinky"></li>
+    <li ng-bind-html="activeMarker.obj.customData['bookingEmail'] | htmlLinky"></li>
+    <li>{{activeMarker.obj.customData['bookingPhone']}}</li>
+</ul>

@@ -1,0 +1,8 @@
+<h5>{{activeMarker.obj.title}}</h5>
+<div ng-bind-html="activeMarker.obj.description | htmlLinky"></div>
+<p>{{activeMarker.obj.subtype}}</p>
+<ul class="list-unstyled">
+    <li ng-if="!! activeMarker.obj.customData['email']" ng-bind-html="activeMarker.obj.customData['email'] | htmlLinky"></li>
+    <li ng-if="!! activeMarker.obj.customData['phone']">{{activeMarker.obj.customData['phone']}}</li>
+    <li ng-if="!! activeMarker.obj.customData['web']" ng-bind-html="'http://' + activeMarker.obj.customData['web'] | htmlLinky"></li>
+</ul>

@@ -1,0 +1,70 @@
+[{
+    "name": "Eventi",
+    "types": [{
+        "objectType": "events",
+        "id": "Estate giovani e famiglia",
+        "color": "red",
+        "icon": "imgs/icons/ic_summer.png",
+        "marker": "imgs/markers/poi_estate.png"
+    }, {
+        "objectType": "events",
+        "id": "Alto Garda",
+        "color": "red",
+        "icon": "imgs/icons/ic_altogarda.png",
+        "marker": "imgs/markers/poi_altogarda.png"
+    }]
+}, {
+    "name": "Tempo libero e vacanze",
+    "types": [{
+        "objectType": "tracks",
+        "id": "Piste ciclopedonali",
+        "color": "#39B54A",
+        "icon": "imgs/icons/ic_bici.png",
+        "marker": "imgs/markers/poi_bici.png"
+    }, {
+        "objectType": "tracks",
+        "id": "Passeggiate",
+        "color": "#39B54A",
+        "icon": "imgs/icons/ic_passeggiata.png",
+        "marker": "imgs/markers/poi_passeggiata.png"
+    }, {
+        "objectType": "pois",
+        "id": "Vacanze al mare",
+        "color": "red",
+        "icon": "imgs/icons/ic_beach.png",
+        "marker": "imgs/markers/poi_mare.png"
+    }]
+}, {
+    "name": "Organizzazioni certificate",
+    "types": [{
+        "objectType": "pois",
+        "id": "\"Family in Trentino\"",
+        "image": "imgs/family_trentino.png",
+        "color": "red",
+        "icon": "imgs/icons/ic_familytn.png",
+        "marker": "imgs/markers/poi_family_tn.png"
+    }, {
+        "objectType": "pois",
+        "id": "\"Family Audit\"",
+        "image": "imgs/family_audit.png",
+        "color": "red",
+        "icon": "imgs/icons/ic_familyaudit.png",
+        "marker": "imgs/markers/poi_familyaudit.png"
+    }]
+}, {
+    "name": "Neonati",
+    "types": [{
+        "objectType": "pois",
+        "id": "Punti allattamento",
+        "color": "red",
+        "icon": "imgs/icons/ic_breastfeeding.png",
+        "marker": "imgs/markers/poi_allattamento.png"
+    }, {
+        "objectType": "pois",
+        "id": "\"Baby little home\"",
+        "color": "red",
+        "icon": "imgs/icons/ic_littlehome.png",
+        "marker": "imgs/markers/poi_littlehome.png",
+        "alert": "La posizione delle Baby little home pu&ograve; essere in alcuni casi approssimata."
+    }]
+}]

@@ -1,0 +1,5 @@
+<h5>{{activeMarker.obj.title}}</h5>
+<a ng-if="!!activePolyline && !activePolyline.getMap()" ng-click="togglePolyline()">Mostra tracciato</a>
+<a ng-if="!!activePolyline && !!activePolyline.getMap()" ng-click="togglePolyline()">Nascondi tracciato</a>
+<div ng-bind-html="activeMarker.obj.description | htmlLinky"></div>
+<p ng-if="!! activeMarker.obj.customData['link']" ng-bind-html="activeMarker.obj.customData['link'] | htmlLinky"></p>

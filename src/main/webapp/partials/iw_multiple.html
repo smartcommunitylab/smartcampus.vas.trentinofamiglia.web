@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    <li ng-class="{active: $index === 0}" ng-repeat="marker in activeMultipleMarkers">
+        <a href="#tab-{{$index}}" data-toggle="tab" ng-click="setActiveMarker(marker)">{{marker.obj.title}}</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane" ng-class="{active: $index === 0}" ng-repeat="marker in activeMultipleMarkers" id="#tab-{{$index}}" ng-include="'./partials/' + getPartial(marker) + '.html'"></div>
+</div>
